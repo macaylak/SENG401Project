@@ -1,0 +1,50 @@
+/* index.css */
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #e784b2;
+  color: #43081b;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  margin: 0;
+
+}
+
+.account {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.account ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.account ul li {
+  margin-right: 10px;
+}
+
+.account ul li a {
+  color: #fff;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.account ul li a:hover {
+  background-color: #43081b;
+}

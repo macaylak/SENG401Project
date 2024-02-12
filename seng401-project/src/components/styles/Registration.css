@@ -1,0 +1,67 @@
+/* Registration.css */
+
+/* <div>
+<h2>Let's Get Started!</h2>
+
+ <div className="registration-form">
+  <input type="text" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+  <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+  <input type="password" placeholder="Confirm Password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+  <button onClick={handleRegister}>Register</button>
+</div>
+  <a href="/">Back to Home</a>
+</div> */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(215, 227, 215);
+}
+
+h2 {
+  text-align: center;
+  margin-top: 50px;
+  color: hsl(134, 93%, 5%);
+}
+
+.registration-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.registration-form input {
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.registration-form button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #a8c697;
+  border-color: #555;
+  color: hsl(134, 93%, 5%);
+  cursor: pointer;
+}
+
+.registration-form button:hover {
+  background-color: #8cb285;
+}
+
+/* back to home button */
+a {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  color: #666;
+
+}
+
+a:hover {
+  color: #22411b;
+}
