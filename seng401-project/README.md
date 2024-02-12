@@ -18,16 +18,6 @@ npm start
 ```
 
 
-
-## Running the Code
-
-Once you have verified that `node`, `npm`, and `npx` are installed, you can run the following commands to run the code:
-
-```bash
-cd seng401-project
-npm start
-```
-
 ## Test Login Credentials
 
 The following are the test login credentials for the application:
