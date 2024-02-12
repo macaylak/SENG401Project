@@ -9,4 +9,6 @@
 ### cd seng401-project
 ### npm start
 
-
+### Use the following login info to test
+### email: example@example.com
+### password: password
