@@ -22,7 +22,7 @@
     </body> */
 
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Times New Roman', Times, serif, sans-serif;
       margin: 0;
       padding: 0;
       background-color: #f4f4f4;
@@ -34,11 +34,14 @@
       color: #4d4d4d;
     }
 
-    .content {
+    /* .content {
       padding: 20px;
     }
     .content p {
       color: #4d4d4d;
+      border: palevioletred;
+
+    
     }
     .content p:first-child {
       margin-top: 0;
@@ -48,4 +51,44 @@
     }
     .content p {
       margin-bottom: 20px;
+    } */
+
+    .content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
     }
+    
+    .content p {
+      margin-bottom: 20px;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    
+    .content p:last-child {
+      margin-bottom: 0;
+    }
+    
+    .content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .box {
+      background-color: pink;
+      padding: 20px;
+      border-radius: 10px;
+      transition: background-color 0.3s ease;
+    }
+    
+    .box:hover {
+      background-color: #e75480;
+    }
+    
+    .box p {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    

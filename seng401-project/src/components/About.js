@@ -7,6 +7,7 @@ function About() {
     <body>
       <h2>About Recipes4You</h2>
       <div className="content">
+        <div  class="box">
         <p>
             Recipes4You is a web-based solution designed to help users reduce food waste
             and plan meals more effectively. Our goal is to provide a sustainable and
@@ -23,6 +24,7 @@ function About() {
             Our mission is to empower users to make informed decisions about their food
             choices while reducing food waste and promoting a sustainable lifestyle.
         </p>
+        </div>
         </div>
     </body>
   );
