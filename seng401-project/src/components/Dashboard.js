@@ -1,7 +1,19 @@
 // Dashboard.js
-import React from 'react';
+import React, { useState } from 'react';
 import './styles/Dashboard.css';
+import RecipeForm from './RecipeForm'; // Import the RecipeForm component
+
 function Dashboard() {
+  const [showRecipeForm, setShowRecipeForm] = useState(false); // State to manage visibility of RecipeForm
+
+  const handleNewRecipeClick = () => {
+    setShowRecipeForm(true); // Set showRecipeForm to true to display RecipeForm
+  };
+
+  const handleCloseRecipeForm = () => {
+    setShowRecipeForm(false); // Set showRecipeForm to false to hide RecipeForm
+  };
+
   return (
     <div>
       {/* hide account component */}
@@ -27,7 +39,9 @@ function Dashboard() {
         {/* content goes here */}
       </div>
       {/* new recipe button */}
-      <button>New Recipe</button>
+      <button onClick={handleNewRecipeClick}>New Recipe</button>
+      {/* Display RecipeForm if showRecipeForm is true */}
+      {showRecipeForm && <RecipeForm onClose={handleCloseRecipeForm} />}
       {/* recipe display */}
       <div className="recipe-display">
         {/* recipe cards */}

@@ -12,8 +12,6 @@ import Login from './components/Login';
 import Registration from './components/Registration';
 import Dashboard from './components/Dashboard';
 
-
-
 import './index.css';
 
 function App() {
@@ -37,8 +35,9 @@ function App() {
           <Route path="/" element={<About />} />
           <Route path="/login" element={<Login />} />
           <Route path="/registration" element={<Registration />} />
-          <Route path="/" element={<About />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          {/* Add a catch-all route for unknown routes */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
         {/* main content */}
         <div className="main-content">
@@ -46,8 +45,12 @@ function App() {
         </div>
       </div>
     </Router>
-
   );
+}
+
+// Component for 404 error
+function NotFound() {
+  return <h2>404 - Not Found</h2>;
 }
 
 export default App;
