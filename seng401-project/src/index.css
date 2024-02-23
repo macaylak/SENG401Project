@@ -49,11 +49,16 @@ h1 {
 .account ul li a {
   color: #fff;
   text-decoration: none;
-  padding: 5px 10px;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
+  padding: 10px 20px; /* Increase padding for a larger button */
+  border-radius: 25px; /* Increase border-radius for a more rounded button */
+  background-color: #43081b; /* Change background color */
+  border: 2px solid #fff; /* Add a border */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Add transition for smoother hover effect */
+  /* Specify the font family */
+  font-size: 14px;
 }
 
 .account ul li a:hover {
-  background-color: #43081b;
+  background-color: #fff; /* Change background color on hover */
+  color: #43081b; /* Change text color on hover */
 }
