@@ -20,8 +20,8 @@ function App() {
   return (
     <Router>
       <div>
-        <header>
-          <h1>Recipes4You</h1>
+        <section>
+        <img className='logo' src="/Recipe4YouLogo.png" alt = "logo" />
           <div className="account">
             <ul>
               <li>
@@ -32,7 +32,8 @@ function App() {
               </li>
             </ul>
           </div>
-        </header>
+
+        </section>
         <Routes>
           <Route path="/" element={<About />} />
           <Route path="/login" element={<Login />} />
