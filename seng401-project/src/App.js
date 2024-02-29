@@ -14,6 +14,7 @@ import Dashboard from './components/Dashboard';
 
 
 
+
 import './index.css';
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
     <Router>
       <div>
         <header>
-          <h1>Recipes4You</h1>
+          <h1 className='title'>Recipes4You</h1>
           <div className="account">
             <ul>
               <li>
