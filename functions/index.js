@@ -18,11 +18,12 @@ exports.generateRecipes = onRequest(async (req, res) => {
         const response = await fetch('https://chatgpt.com/api/v1/completion/', {
             method: 'POST',
             headers: {
-                'Authorization': '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', // Replace with your secret API key
+                'Authorization': 'Bearer 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', // Replace with your secret API key
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
                 prompt: `Give food recipes that can be made for the food items: ${foodItems}`,
+                model: "gpt-3.5-turbo-instruct"
             }),
         });
 
