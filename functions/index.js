@@ -7,13 +7,36 @@
  * See a full list of supported triggers at https://firebase.google.com/docs/functions
  */
 
-const {onRequest} = require("firebase-functions/v2/https");
+const {onRequest} = require("firebase-functions/v1/https");
 const logger = require("firebase-functions/logger");
 
-// Create and deploy your first functions
-// https://firebase.google.com/docs/functions/get-started
+exports.generateRecipes = onRequest(async (req, res) => {
+    try {
+        const { foodItems } = req.body;
 
-// exports.helloWorld = onRequest((request, response) => {
-//   logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+        // Make a request to ChatGPT API using Fetch
+        const response = await fetch('https://chatgpt.com/api/v1/completion/', {
+            method: 'POST',
+            headers: {
+                'Authorization': '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', // Replace with your secret API key
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                prompt: `Give food recipes that can be made for the food items: ${foodItems}`,
+            }),
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch data from ChatGPT API');
+        }
+
+        const responseData = await response.json();
+
+        // Extract and send back recipes to the client
+        const recipes = responseData.choices.map(choice => choice.text.trim());
+        res.json({ recipes });
+    } catch (error) {
+        console.error('Error generating recipes:', error);
+        res.status(500).json({ error: 'Error generating recipes' });
+    }
+});

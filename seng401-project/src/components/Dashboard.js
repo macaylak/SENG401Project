@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios'; // or use fetch API
+import axios from 'axios'; // Import Axios or use fetch API
 
 function Dashboard() {
   const [showChatBox, setShowChatBox] = useState(false);
@@ -16,32 +16,26 @@ function Dashboard() {
 
   const handleSubmit = async () => {
     if (!input.trim()) return;
-  
+
     const userMessage = { text: input, sender: 'user' };
     setMessages([...messages, userMessage]);
     setInput('');
-  
+
     try {
       const response = await axios.post(
-        'https://chatgpt.com/api/v1/completion/',
-        {
-          prompt: `Give food recipes that can be made for the food items: ${input}`,
-        },
-        {
-          headers: {
-            Authorization: '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',
-            'Content-Type': 'application/json',
-          },
-        }
+        // Update the Cloud Function URL here
+        'https://us-central1-pro-5d7e4.cloudfunctions.net/generateRecipes',
+        { foodItems: input },
+        { headers: { 'Content-Type': 'application/json' } }
       );
-  
-      const botMessage = { text: response.data.choices[0].text.trim(), sender: 'bot' };
+
+      const botMessage = { text: response.data.recipes.join(', '), sender: 'bot' };
       setMessages([...messages, botMessage]);
     } catch (error) {
       console.error('Error sending message:', error);
     }
   };
-  
+
   return (
     <div>
       {/* hide account component */}
