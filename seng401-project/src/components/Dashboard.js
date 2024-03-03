@@ -22,12 +22,22 @@ function Dashboard() {
     setInput('');
 
     try {
-      const response = await axios.post(
-        // Update the Cloud Function URL here
-        'https://us-central1-pro-5d7e4.cloudfunctions.net/generateRecipes',
-        { foodItems: input },
-        { headers: { 'Content-Type': 'application/json' } }
-      );
+      // const response = await axios.post(
+      //   // Update the Cloud Function URL here
+      //   'https://us-central1-pro-5d7e4.cloudfunctions.net/generateRecipes',
+      //   { foodItems: input },
+      //   // { headers: { 'Content-Type': 'application/json' } }
+      // );
+      const response = await fetch("https://us-central1-pro-5d7e4.cloudfunctions.net/generateRecipes/", {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ foodItems: input }),
+      });
+
+      console.log('Response:', response);
 
       const botMessage = { text: response.data.recipes.join(', '), sender: 'bot' };
       setMessages([...messages, botMessage]);

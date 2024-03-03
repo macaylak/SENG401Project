@@ -12,8 +12,8 @@ const logger = require("firebase-functions/logger");
 
 exports.generateRecipes = onRequest(async (req, res) => {
     try {
+        console.log('Request body:', req.body);
         const { foodItems } = req.body;
-
         // Make a request to ChatGPT API using Fetch
         const response = await fetch('https://chatgpt.com/api/v1/completion/', {
             method: 'POST',
@@ -30,6 +30,8 @@ exports.generateRecipes = onRequest(async (req, res) => {
         if (!response.ok) {
             throw new Error('Failed to fetch data from ChatGPT API');
         }
+
+        // console.log('Response:', response);
 
         const responseData = await response.json();
 
