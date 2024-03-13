@@ -30,16 +30,13 @@ function Dashboard() {
       // );
       const response = await fetch("https://us-central1-pro-5d7e4.cloudfunctions.net/generateRecipes/", {
         method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ foodItems: input }),
+        body: JSON.stringify({ foodItems: input })
       });
 
-      console.log('Response:', response);
+      const jsonRes = await response.json()
+      console.log(jsonRes)
 
-      const botMessage = { text: response.data.recipes.join(', '), sender: 'bot' };
+      const botMessage = { text: jsonRes, sender: 'bot' };
       setMessages([...messages, botMessage]);
     } catch (error) {
       console.error('Error sending message:', error);
