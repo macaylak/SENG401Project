@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios'; // Import Axios or use fetch API
 
 function Dashboard() {
   const [showChatBox, setShowChatBox] = useState(false);
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([]);
+  const [recipes, setRecipes] = useState([]);
+
+  useEffect(() => {
+    console.log(recipes);
+  }, [recipes]);
 
   const handleNewRecipeClick = () => {
     setShowChatBox(true);
@@ -27,9 +32,21 @@ function Dashboard() {
         'https://us-central1-pro-5d7e4.cloudfunctions.net/generateRecipes',
         { prompt: input } // Send user input as prompt
       );
+      // check if response is 200
+      if (response.status === 200) {
+        var recipe_dict = response.data
+        if (recipe_dict.title !== "Recipe cannot be generated") {
 
-      const botMessage = { text: response.data, sender: 'bot' };
-      setMessages([...messages, botMessage]);
+          recipe_dict.ingredientsAvailable = input
+
+          const botMessage = { text: response.data, sender: 'bot' };
+          setMessages([...messages, botMessage]);
+          setRecipes([...recipes, recipe_dict]);
+        }
+        else {
+          alert(recipe_dict.title)
+        }
+      }
     } catch (error) {
       console.error('Error sending message:', error);
     }
@@ -70,9 +87,18 @@ function Dashboard() {
       {showChatBox && (
         <div className="chat-box">
           <div className="messages">
-            {messages.map((message, index) => (
+            {/* {messages.map((message, index) => (
               <div key={index} className={`message ${message.sender}`}>
                 {message.text}
+              </div>
+            ))} */}
+            {recipes.map((recipe, index) => (
+              <div key={index} className={`message bot`}>
+                <h3>{recipe.title}</h3>
+                <p>{recipe.ingredients}</p>
+                <p>{recipe.instructions}</p>
+                <p>{recipe.prepTime}</p>
+                <p>{recipe.nutritionalFacts}</p>
               </div>
             ))}
           </div>
