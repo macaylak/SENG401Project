@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'; // Import Axios or use fetch API
+import {auth} from '../firebase'; 
 
 function Dashboard() {
   const [showChatBox, setShowChatBox] = useState(false);
@@ -7,9 +8,9 @@ function Dashboard() {
   const [messages, setMessages] = useState([]);
   const [recipes, setRecipes] = useState([]);
 
-  useEffect(() => {
-    console.log(recipes);
-  }, [recipes]);
+  // useEffect(() => {
+  //   console.log(auth.currentUser.email);
+  // }, []);
 
   const handleNewRecipeClick = () => {
     setShowChatBox(true);
@@ -38,6 +39,7 @@ function Dashboard() {
         if (recipe_dict.title !== "Recipe cannot be generated") {
 
           recipe_dict.ingredientsAvailable = input
+          recipe_dict.user = auth.currentUser.email
 
           const botMessage = { text: response.data, sender: 'bot' };
           setMessages([...messages, botMessage]);
