@@ -77,39 +77,41 @@ function Dashboard() {
 
   const handleSubmit = async () => {
     if (!input.trim()) return;
-
+  
     const userMessage = { text: input, sender: 'user' };
     setMessages([...messages, userMessage]);
     setInput('');
-
+  
     try {
       const response = await axios.post(
-        // Update the Cloud Function URL here
         'https://us-central1-pro-5d7e4.cloudfunctions.net/generateRecipes',
-        { prompt: input } // Send user input as prompt
+        { prompt: input }
       );
-      // check if response is 200
+  
       if (response.status === 200) {
-        var recipe_dict = response.data
+        var recipe_dict = response.data;
         if (recipe_dict.title !== "Recipe cannot be generated") {
-
-          recipe_dict.ingredientsAvailable = input
-          recipe_dict.user = auth.currentUser.email
-
+          recipe_dict.ingredientsAvailable = input;
+          recipe_dict.user = auth.currentUser.email;
+  
           const botMessage = { text: response.data, sender: 'bot' };
           setMessages([...messages, botMessage]);
-          // setRecipes([recipe_dict, ...recipes]);
-          addRecipe(recipe_dict)
-          getRecipes(auth.currentUser);
-        }
-        else {
-          alert(recipe_dict.title)
+  
+       
+          setRecipes([recipe_dict, ...recipes]);
+        } else {
+          alert(recipe_dict.title);
         }
       }
     } catch (error) {
       console.error('Error sending message:', error);
     }
   };
+  
+  const handleSave = (recipe_dict) => {
+    addRecipe(recipe_dict);
+  }
+  
 
   const logOut = () => {
     signOut(auth)
@@ -127,6 +129,10 @@ function Dashboard() {
     // getRecipes(auth.currentUser);
     setRecipes(recipes.filter((recipe) => recipe.id !== id));
   }
+
+
+ 
+  
 
   return (
     <div>
@@ -159,6 +165,8 @@ function Dashboard() {
                 <pre>{recipe.instructions}</pre>
                 <pre>{recipe.prepTime}</pre>
                 <pre>{recipe.nutritionalFacts}</pre>
+                <button onClick={() => handleSave(recipe)}>Save</button>
+
                 <button onClick={() => handleDelete(recipe.id)}>Delete</button>
               </div>
       ))}
