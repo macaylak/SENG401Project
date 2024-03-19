@@ -35,7 +35,16 @@ const addRecipe = (recipe) => {
   addDoc(colRef, recipe)
   .catch((err) => {
       console.log(err.message);
-})
+  })
 }
 
-export { auth, colRef, addRecipe };
+const deleteRecipe = (id) => {
+  deleteDoc(doc(colRef, id))
+  .catch((err) => {
+      console.log(err.message);
+  })
+}
+
+
+
+export { auth, colRef, addRecipe, deleteRecipe };

@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useReducer } from 'react';
 import axios from 'axios'; // Import Axios or use fetch API
-import {addRecipe, auth, colRef} from '../firebase'; 
+import {addRecipe, auth, colRef, deleteRecipe} from '../firebase'; 
 import { signOut, onAuthStateChanged } from "firebase/auth";
 import {useNavigate} from 'react-router-dom';
-import { getDocs, where, query } from 'firebase/firestore';
+import { getDocs, where, query, doc } from 'firebase/firestore';
 
 function Dashboard() {
   const [showChatBox, setShowChatBox] = useState(false);
@@ -27,11 +27,14 @@ function Dashboard() {
 
   // console.log(auth.currentUser)
 
+  // console.log(auth.currentUser.email)
+
   onAuthStateChanged(auth, (user) => {
     if (user && count === 1) {
       // console.log('user logged in: ', user);
-      count++;
+      // count++;
       getRecipes(user);
+    } else if (count !== 1) {
     } else {
       console.log('user logged out');
     }
@@ -119,6 +122,12 @@ function Dashboard() {
       })
   }
 
+  const handleDelete = (id) => {
+    deleteRecipe(id);
+    // getRecipes(auth.currentUser);
+    setRecipes(recipes.filter((recipe) => recipe.id !== id));
+  }
+
   return (
     <div>
       {/* hide account component */}
@@ -144,12 +153,13 @@ function Dashboard() {
         {/* content goes here */}
       </div>
       {recipes.map((recipe, index) => (
-              <div key={index} className={`message bot`}>
+              <div key={recipe.id} className={`message bot`}>
                 <h3>{recipe.title}</h3>
                 <pre>{recipe.ingredients}</pre>
                 <pre>{recipe.instructions}</pre>
                 <pre>{recipe.prepTime}</pre>
                 <pre>{recipe.nutritionalFacts}</pre>
+                <button onClick={() => handleDelete(recipe.id)}>Delete</button>
               </div>
       ))}
       {/* new recipe button */}
