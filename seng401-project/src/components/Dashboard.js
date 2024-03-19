@@ -95,8 +95,9 @@ function Dashboard() {
 
           const botMessage = { text: response.data, sender: 'bot' };
           setMessages([...messages, botMessage]);
-          setRecipes([recipe_dict, ...recipes]);
+          // setRecipes([recipe_dict, ...recipes]);
           addRecipe(recipe_dict)
+          getRecipes(auth.currentUser);
         }
         else {
           alert(recipe_dict.title)
