@@ -2,6 +2,13 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
+import {
+  getFirestore, onSnapshot, collection,
+  addDoc, deleteDoc, doc,
+  query, where,
+  orderBy, serverTimestamp,
+  getDoc, updateDoc
+} from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -21,5 +28,14 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
+const db = getFirestore();
+const colRef = collection(db, 'recipes');
 
-export { auth };
+const addRecipe = (recipe) => {
+  addDoc(colRef, recipe)
+  .catch((err) => {
+      console.log(err.message);
+})
+}
+
+export { auth, colRef, addRecipe };

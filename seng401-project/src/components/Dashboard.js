@@ -1,16 +1,68 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import axios from 'axios'; // Import Axios or use fetch API
-import {auth} from '../firebase'; 
+import {addRecipe, auth, colRef} from '../firebase'; 
+import { signOut, onAuthStateChanged } from "firebase/auth";
+import {useNavigate} from 'react-router-dom';
+import { getDocs, where, query } from 'firebase/firestore';
 
 function Dashboard() {
   const [showChatBox, setShowChatBox] = useState(false);
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([]);
   const [recipes, setRecipes] = useState([]);
+  const navigate = useNavigate();
+  // const colRef = collection(db, 'recipes');
+  var count = 0;
+
+  useEffect(() => {
+    count = 1;
+  }, []);
 
   // useEffect(() => {
-  //   console.log(auth.currentUser.email);
-  // }, []);
+  //   // console.log(auth.currentUser.email);
+  //   getRecipes(auth.currentUser);
+  //   console.log(auth.currentUser)
+  // }, [auth.currentUser]);
+  // console.log(auth.currentUser)
+
+  // console.log(auth.currentUser)
+
+  onAuthStateChanged(auth, (user) => {
+    if (user && count === 1) {
+      // console.log('user logged in: ', user);
+      count++;
+      getRecipes(user);
+    } else {
+      console.log('user logged out');
+    }
+  })
+
+  // useEffect(() => {
+  //   console.log(recipes);
+  // }, [recipes]);
+
+  const getRecipes = (user) => {
+    if (!user) return;
+    
+    var fetchedRecipes = [];
+    const q = query(colRef, where("user", "==", user.email));
+
+    getDocs(q)
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          if (!recipes.some((recipe) => recipe.id === doc.id)) {
+            let recipe = doc.data();
+            recipe.id = doc.id;
+            fetchedRecipes.push(recipe);
+          }
+        });
+        setRecipes([...recipes, ...fetchedRecipes]);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+
+  }
 
   const handleNewRecipeClick = () => {
     setShowChatBox(true);
@@ -43,7 +95,8 @@ function Dashboard() {
 
           const botMessage = { text: response.data, sender: 'bot' };
           setMessages([...messages, botMessage]);
-          setRecipes([...recipes, recipe_dict]);
+          setRecipes([recipe_dict, ...recipes]);
+          addRecipe(recipe_dict)
         }
         else {
           alert(recipe_dict.title)
@@ -53,6 +106,17 @@ function Dashboard() {
       console.error('Error sending message:', error);
     }
   };
+
+  const logOut = () => {
+    signOut(auth)
+      .then(() => {
+        console.log("user signed out");
+        navigate('/login');
+      })
+      .catch((err) => {
+        console.error(err.message);
+      })
+  }
 
   return (
     <div>
@@ -72,19 +136,28 @@ function Dashboard() {
           <li>Meal Plan</li>
           <li>Settings</li>
         </ul>
-        <a href="/">Logout</a>
+        <button onClick={logOut}>Logout</button>
       </div>
       {/* main content */}
       <div className="main-content">
         {/* content goes here */}
       </div>
+      {recipes.map((recipe, index) => (
+              <div key={index} className={`message bot`}>
+                <h3>{recipe.title}</h3>
+                <pre>{recipe.ingredients}</pre>
+                <pre>{recipe.instructions}</pre>
+                <pre>{recipe.prepTime}</pre>
+                <pre>{recipe.nutritionalFacts}</pre>
+              </div>
+      ))}
       {/* new recipe button */}
       <button onClick={handleNewRecipeClick}>New Recipe</button>
       {/* recipe display */}
       <div className="recipe-display">
         {/* recipe cards */}
       </div>
-
+      
       {/* Chat Box */}
       {showChatBox && (
         <div className="chat-box">
@@ -94,15 +167,7 @@ function Dashboard() {
                 {message.text}
               </div>
             ))} */}
-            {recipes.map((recipe, index) => (
-              <div key={index} className={`message bot`}>
-                <h3>{recipe.title}</h3>
-                <p>{recipe.ingredients}</p>
-                <p>{recipe.instructions}</p>
-                <p>{recipe.prepTime}</p>
-                <p>{recipe.nutritionalFacts}</p>
-              </div>
-            ))}
+            
           </div>
           <div className="input-area">
             <input
