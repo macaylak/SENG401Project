@@ -23,26 +23,38 @@ function Login() {
     }
   };
 
-  return (
-    <div> 
-      
-      <header className='loginHeader'></header>
-      <h2 className>Login</h2>
+    return (
+      <div className='BackDropLogin'>
     
-      <div className="login-form">
-        <input type="text" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        <button onClick={handleLogin}>Login</button>
-      </div>
-      
-      <a href="/">Back to Home</a>
-      <style>{`
-        .about-container {
-          display: none;
-        }
-      `}</style>
+        <div className='LoginBody'>
+  
+          <div className='LoginThing'>
+          <h2 className='LoginHeading'>Login</h2>
+          <div className="login-form">
+
+
+          <div className="input-container">
+    <span className="icon">✉</span>
+    <input type="text" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+  </div>
+  <div className="input-container">
+    <span className="icon">🗝</span>
+    <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+  </div> 
+  
+      <button onClick={handleLogin}>Login</button>
     </div>
-  );
+          <a href="/">Back to Home</a>
+    </div>
+  
+    </div>
+
+        <footer className='LoginFooter'>
+          <p className='LF'>&copy; 2024 Recipes4You</p>
+        </footer>
+      
+      </div>
+    );
 }
 
 export default Login;
