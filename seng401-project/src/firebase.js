@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getAuth } from "firebase/auth";
+import { getAuth, updatePassword } from "firebase/auth";
 import {
   getFirestore, onSnapshot, collection,
   addDoc, deleteDoc, doc,
@@ -44,8 +44,6 @@ const deleteRecipe = (id) => {
       console.log(err.message);
   })
 }
-
-
 
 
 

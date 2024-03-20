@@ -134,7 +134,6 @@ function Dashboard() {
 
   const handleDelete = (id) => {
     deleteRecipe(id);
-    // getRecipes(auth.currentUser);
     setRecipes(recipes.filter((recipe) => recipe.id !== id));
   }
 
@@ -155,7 +154,7 @@ function Dashboard() {
       {/* sidemenu */}
       <div className="sidemenu">
         <ul>
-          <li>Profile</li>
+          <li><a href='/profile'>Profile</a></li>
           <li>Recipes</li>
           <li>Meal Plan</li>
           <li>Settings</li>
