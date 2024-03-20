@@ -108,9 +108,17 @@ function Dashboard() {
     }
   };
   
-  const handleSave = (recipe_dict) => {
-    addRecipe(recipe_dict);
+ 
+
+  const handleSave = async (recipe_dict) => {
+    const querySnapshot = await getDocs(query(colRef, where("title", "==", recipe_dict.title)));
+    if (!querySnapshot.empty) {
+      console.log('Recipe already saved!');
+    } else {
+      addRecipe(recipe_dict);
+    }
   }
+  
   
 
   const logOut = () => {
