@@ -1,43 +1,95 @@
-/* About.css */
-/*     <body>
-      <h2>About Recipes4You</h2>
-      <div className="content">
-        <p>
-            Recipes4You is a web-based solution designed to help users reduce food waste
-            and plan meals more effectively. Our goal is to provide a sustainable and
-            health-conscious approach to meal planning by offering personalized recipe
-            suggestions based on available ingredients and nutritional goals.
-        </p>
-        <p>
-            With Recipes4You, users can create customized recipes tailored to their dietary
-            preferences, allergies, and fitness goals. By utilizing AI-generated recipe
-            suggestions, we aim to inspire creativity in the kitchen and promote a more
-            thoughtful approach to nutrition.
-        </p>
-        <p>
-            Our mission is to empower users to make informed decisions about their food
-            choices while reducing food waste and promoting a sustainable lifestyle.
-        </p>
-        </div>
-    </body> */
+ @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap');
 
-    body {
-      font-family: 'Times New Roman', Times, serif, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f4;
+/* About.css */
+
+/* Center the entire content */
+.content {
+  display: flex;
+  justify-content: center; /* Horizontally center */
+  align-items: flex-start; /* Align content to the top */
+  height: 90vh !important;  /* Set the height to the viewport height */
+}
+
+/* Style the image */
+.content img {
+  max-width: 40%; /* Take up around 50% of the width */
+  height: auto; /* Maintain aspect ratio */
+  margin-right: 20px; /* Add some spacing between image and text */
+}
+
+/* Style the written content */
+.writing {
+  max-width: 40%; /* Take up around 50% of the width */
+  text-align: left; /* Align text to the left */
+  display: flex; /* Change display to flex */
+  flex-direction: column; /* Set flex direction to column */
+  justify-content: flex-end; /* Align content to the bottom */
+}
+
+/* Style the signature */
+.signature {
+  margin-top: 27px; /* Push signature to the bottom of the container */
+}
+
+
+
+p {
+  font-size: rem; /* Adjust as needed */
+  line-height: 1.5; /* Adjust as needed */
+  color: #4d4d4d; /* Adjust as needed */
+}
+
+
+    
+    h2, h3 {
+      line-height: 0.45; /* Adjust as needed */
+    }
+    
+
+    h3 {
+      color: #e08221;
+      text-align: center;
+      font-family: "Oswald", Sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-top: 60px;
+      
     }
 
     h2 {
-      margin-top: 0;
-      padding-top: 20px;
-      color: #4d4d4d;
-      left: 50%;
-    }
+      color: #34383a;
+      font-family: "Oswald", Sans-serif;
+      font-size: 3.55rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 100px; /* Add margin-bottom to create space */
 
-    
-    /* .content {
-      padding: 20px;
+  }
+
+/* Style the horizontal line */
+.line {
+  width: 100%; /* Set the width to 100% of the container */
+  height: 1px; /* Set the height of the line */
+  background-color: #ccc; /* Adjust color as needed */
+  margin-top: 10px; /* Adjust spacing */
+  margin-bottom: 10px; /* Adjust spacing */
+}
+
+h4 {
+  color: #1a1918;
+  font-family: "Oswald", Sans-serif;
+  font-weight: 700;
+  font-size: large;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 0; /* Remove default margin */
+  margin-bottom: 10px; /* Add spacing below the subheading */
+}
+
+    .content {
+      padding: 10px;
     }
     .content p {
       color: #4d4d4d;
@@ -46,51 +98,9 @@
     
     }
     .content p:first-child {
-      margin-top: 0;
+      margin-top: 10;
     }
     .content p:last-child {
-      margin-bottom: 0;
+      margin-bottom: 10;
     }
-    .content p {
-      margin-bottom: 20px;
-    } */
-
-    .content {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-    
-    .content p {
-      margin-bottom: 20px;
-      font-size: 16px;
-      line-height: 1.6;
-    }
-    
-    .content p:last-child {
-      margin-bottom: 0;
-    }
-    
-    .content {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-    
-    .box {
-      background-color: pink;
-      padding: 20px;
-      border-radius: 10px;
-      transition: background-color 0.3s ease;
-    }
-    
-    .box:hover {
-      background-color: #e75480;
-    }
-    
-    .box p {
-      margin: 0;
-      font-size: 16px;
-      line-height: 1.6;
-    }
-    
+   

@@ -1,10 +1,10 @@
-// App.js
 import React from 'react';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Link,
+  useLocation, // Move the useLocation import here
 } from "react-router-dom";
 
 import About from './components/About';
@@ -14,16 +14,30 @@ import Dashboard from './components/Dashboard';
 import Profile from './components/Profile';
 
 
-
-
 import './index.css';
 
 function App() {
   return (
     <Router>
-      <div>
-        <header>
-          <h1 className='title'>Recipes4You</h1>
+      <AppContent />
+    </Router>
+  );
+}
+
+function AppContent() {
+  const location = useLocation(); // Use useLocation here
+
+  // Check if the current location is the login page
+  const isLoginPage = location.pathname === '/login';
+  const isRegistrationPage = location.pathname === '/registration';
+  const isDashboardPage = location.pathname === '/dashboard';
+  const isProfilePage = location.pathname === '/profile';
+
+  return (
+    <div>
+      {!(isLoginPage || isRegistrationPage || isDashboardPage || isProfilePage) &&( // Render header only if not on the login page
+        <section>
+          <img className='logo' src="/Recipe4YouLogo.png" alt="logo" />
           <div className="account">
             <ul>
               <li>
@@ -34,22 +48,25 @@ function App() {
               </li>
             </ul>
           </div>
-        </header>
-        <Routes>
-          <Route path="/" element={<About />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/registration" element={<Registration />} />
-          <Route path="/" element={<About />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-        </Routes>
         {/* main content */}
         <div className="main-content">
           {/* content goes here */}
         </div>
+        </section>
+      )}
+      <Routes>
+        <Route path="/" element={<About />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/registration" element={<Registration />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/" element={<About />} />
+        <Route path="/profile" element={<Profile />} />
+      </Routes>
+      {/* main content */}
+      <div className="main-content">
+        {/* content goes here */}
       </div>
-    </Router>
-
+    </div>
   );
 }
 
