@@ -113,7 +113,7 @@ function Dashboard() {
   const handleSave = async (recipe_dict) => {
     const querySnapshot = await getDocs(query(colRef, where("title", "==", recipe_dict.title)));
     if (!querySnapshot.empty) {
-      console.log('Recipe already saved!');
+      alert('Recipe already saved!');
     } else {
       addRecipe(recipe_dict);
     }
