@@ -4,7 +4,7 @@ import {
   Routes,
   Route,
   Link,
-  useLocation, // Move the useLocation import here
+  useLocation,
 } from "react-router-dom";
 
 import About from './components/About';
@@ -12,7 +12,6 @@ import Login from './components/Login';
 import Registration from './components/Registration';
 import Dashboard from './components/Dashboard';
 import Profile from './components/Profile';
-
 
 import './index.css';
 
@@ -25,7 +24,7 @@ function App() {
 }
 
 function AppContent() {
-  const location = useLocation(); // Use useLocation here
+  const location = useLocation();
 
   // Check if the current location is the login page
   const isLoginPage = location.pathname === '/login';
@@ -35,7 +34,7 @@ function AppContent() {
 
   return (
     <div>
-      {!(isLoginPage || isRegistrationPage || isDashboardPage || isProfilePage) &&( // Render header only if not on the login page
+      {!(isLoginPage || isRegistrationPage || isDashboardPage || isProfilePage) &&(
         <section>
           <img className='logo' src="/Recipe4YouLogo.png" alt="logo" />
           <div className="account">
@@ -48,10 +47,6 @@ function AppContent() {
               </li>
             </ul>
           </div>
-        {/* main content */}
-        <div className="main-content">
-          {/* content goes here */}
-        </div>
         </section>
       )}
       <Routes>
@@ -59,7 +54,6 @@ function AppContent() {
         <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<Registration />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/" element={<About />} />
         <Route path="/profile" element={<Profile />} />
       </Routes>
       {/* main content */}

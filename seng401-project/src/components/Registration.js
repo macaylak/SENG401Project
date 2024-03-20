@@ -13,7 +13,7 @@ function Registration() {
   const handleRegister = async () => {
     if (password === confirmPassword) {
       try {
-        await createUserWithEmailAndPassword(auth, email, password); // WHAT THE FUCK WAS WRONG WITH THS
+        await createUserWithEmailAndPassword(auth, email, password); 
         console.log('Registration successful');
         window.location.reload();
       } catch (error) {
@@ -25,15 +25,35 @@ function Registration() {
   };
 
   return (
-    <div className='body'>
-      <h2>Let's Get Started!</h2>
-      <div className="registration-form">
-        <input type="text" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        <input type="password" placeholder="Confirm Password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
-        <button onClick={handleRegister}>Register</button>
+    <div className='BackDrop'>
+  
+      <div className='SignUpBody'>
+
+        <div className='SignUpthing'>
+        <h2 className='signupheading'>Sign Up</h2>
+        <div className="registration-form">
+  <div className="input-container">
+    <span className="icon">✉</span>
+    <input type="text" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+  </div>
+  <div className="input-container">
+    <span className="icon">🗝</span>
+    <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+  </div>
+  <div className="input-container">
+    <span className="icon">✔</span>
+    <input type="password" placeholder="Confirm Password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+  </div>
+  <button onClick={handleRegister}>Register</button>
+</div>
+        <a href="/">Back to Home</a>
       </div>
-      <a href="/">Back to Home</a>
+
+      </div>
+      <footer className='SignUpFooter'>
+        <p className='SF'>&copy; 2024 Recipes4You</p>
+      </footer>
+    
     </div>
   );
 }

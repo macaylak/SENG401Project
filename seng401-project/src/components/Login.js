@@ -1,3 +1,4 @@
+
 // Import necessary modules
 import React, { useState } from 'react';
 import './styles/Login.css';
@@ -23,9 +24,10 @@ function Login() {
   };
 
   return (
-    <div>
+    <div> 
       
-      <h2>Login</h2>
+      <header className='loginHeader'></header>
+      <h2 className>Login</h2>
     
       <div className="login-form">
         <input type="text" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />

@@ -2,6 +2,8 @@
 
 /* About.css */
 
+
+
 /* Center the entire content */
 .content {
   display: flex;
@@ -47,7 +49,7 @@ p {
     
 
     h3 {
-      color: #e08221;
+      color: rgb(68, 115, 160);
       text-align: center;
       font-family: "Oswald", Sans-serif;
       font-size: 1.25rem;
@@ -58,7 +60,7 @@ p {
     }
 
     h2 {
-      color: #34383a;
+      text-align: center;
       font-family: "Oswald", Sans-serif;
       font-size: 3.55rem;
       font-weight: 700;
