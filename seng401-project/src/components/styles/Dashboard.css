@@ -22,17 +22,12 @@
 </div> 
 */
 
-body {
-  font-family: Arial, sans-serif;
-  background-color: #ffffff;
-}
-
 .material-icons-outlined {
   vertical-align: middle;
   line-height: 1px;
 }
 
-h2 {
+.DashboardHeader {
   margin: 0;
   padding: 20px;
   color: #4d4d4d;
@@ -87,7 +82,7 @@ h2 {
   justify-content: space-around;
 }
 
-button {
+.DashboardButton {
   margin: 100px;
   padding: 10px;
   width: 200px;
@@ -99,7 +94,7 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+.DashboardButton:hover {
   background-color: #333;
 }
 

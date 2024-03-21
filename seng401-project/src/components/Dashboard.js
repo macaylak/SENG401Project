@@ -155,7 +155,7 @@ function Dashboard() {
         }
       `}</style>
       {/* dashboard title */}
-      <h2>Dashboard</h2>
+      <h2 className='DashboardHeader'>Dashboard</h2>
       {/* sidemenu */}
       <div className="sidemenu">
         <ul>
@@ -166,7 +166,7 @@ function Dashboard() {
           <li><span class="material-icons-outlined">menu_book</span> Meal Plan</li>
           <li><span class="material-icons-outlined">settings</span> Settings</li>
         </ul>
-        <button onClick={logOut}>Logout</button>
+        <button className='DashboardButton' onClick={logOut}>Logout</button>
       </div>
       {/* main content */}
       <div className="main-content">
@@ -174,7 +174,7 @@ function Dashboard() {
       </div>
       {recipes.map((recipe, index) => (
               <div key={recipe.id} className={`message bot`}>
-                <h3>{recipe.title}</h3>
+                <h3 className='recipeTitle'>{recipe.title}</h3>
                 <pre>{recipe.ingredients}</pre>
                 <pre>{recipe.instructions}</pre>
                 <pre>{recipe.prepTime}</pre>

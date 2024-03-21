@@ -6,17 +6,28 @@
     background-repeat: repeat; /* Repeat the image */
     height: 100vh; /* Set the height of the background to cover the whole viewport */
   }
-/*   
-  h2 {
+
+  .LoginBody{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  
+  }
+  
+
+  
+  .LoginHeading {
     text-align: center;
     margin-top: 50px;
-    color: hsl(134, 93%, 5%);
-  } */
+    color: #130e41;
+  }
 
 .login-form {
     display: flex;
     flex-direction: column;
     align-items: center;
+    
   }
   
   .login-form input {
@@ -28,7 +39,7 @@
   }
   
   
-  button {
+  .LoginButton {
     color: #fff;
     text-decoration: none;
     padding: 10px 20px; /* Increase padding for a larger button */
@@ -42,7 +53,7 @@
     margin: 0 auto; /* Center the button horizontally */
 }
   
-  button:hover{
+.LoginButton:hover{
     background-color: #fff; /* Change background color on hover */
     color: #8bc2e4; /* Change text color on hover */
     border: 2px solid #8bc2e4; /* Add a border */
