@@ -6,6 +6,7 @@ import { auth } from '../firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 function Registration() {
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -28,6 +29,7 @@ function Registration() {
     <div className='body'>
       <h2>Let's Get Started!</h2>
       <div className="registration-form">
+        <input type='text' placeholder="Username" value={username} onChange={(e) =>setUsername(e.target.value)} />
         <input type="text" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
         <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
         <input type="password" placeholder="Confirm Password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />

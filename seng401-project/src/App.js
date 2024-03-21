@@ -11,7 +11,6 @@ import About from './components/About';
 import Login from './components/Login';
 import Registration from './components/Registration';
 import Dashboard from './components/Dashboard';
-import Profile from './components/Profile';
 
 
 import './index.css';
@@ -31,11 +30,10 @@ function AppContent() {
   const isLoginPage = location.pathname === '/login';
   const isRegistrationPage = location.pathname === '/registration';
   const isDashboardPage = location.pathname === '/dashboard';
-  const isProfilePage = location.pathname === '/profile';
 
   return (
     <div>
-      {!(isLoginPage || isRegistrationPage || isDashboardPage || isProfilePage) &&( // Render header only if not on the login page
+      {!(isLoginPage || isRegistrationPage || isDashboardPage) &&( // Render header only if not on the login page
         <section>
           <img className='logo' src="/Recipe4YouLogo.png" alt="logo" />
           <div className="account">
@@ -48,23 +46,16 @@ function AppContent() {
               </li>
             </ul>
           </div>
-        {/* main content */}
-        <div className="main-content">
-          {/* content goes here */}
-        </div>
         </section>
       )}
-      <Routes>
-        <Route path="/" element={<About />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/registration" element={<Registration />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/" element={<About />} />
-        <Route path="/profile" element={<Profile />} />
-      </Routes>
-      {/* main content */}
-      <div className="main-content">
-        {/* content goes here */}
+      <div id ='AppRoutes'>
+        <Routes>
+          <Route path="/" element={<About />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/registration" element={<Registration />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/" element={<About />} />
+        </Routes>
       </div>
     </div>
   );

@@ -1,112 +1,109 @@
-// Profile.js
-import React from 'react';
-import {auth} from '../firebase';
-import { updatePassword, sendPasswordResetEmail, updateEmail, reauthenticateWithCredential } from "firebase/auth";
-import { useState } from 'react';
-
+import React, { useState } from 'react';
+import { auth } from '../firebase';
+import { updateEmail, sendPasswordResetEmail, reauthenticateWithCredential } from 'firebase/auth';
+import './styles/Profile.css';
 
 const Profile = () => {
   const [password, setPassword] = useState('');
   const [emailForm, setEmailForm] = useState(false);
-
-  // // const auth = getAuth();
-  // sendPasswordResetEmail(auth, email)
-  //   .then(() => {
-  //     // Password reset email sent!
-  //     // ..
-  //   })
-  //   .catch((error) => {
-  //     const errorCode = error.code;
-  //     const errorMessage = error.message;
-  //     // ..
-  // });
+  const [errorMessage, setErrorMessage] = useState('');
+  const [username, setUsername] = useState(''); // Added username state
 
   const handlePasswordChange = () => {
     sendPasswordResetEmail(auth, auth.currentUser.email)
-    .then(() => {
-      alert('Password reset email sent!');
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode, errorMessage);
-    });
-  }
+      .then(() => {
+        alert('Password reset email sent!');
+      })
+      .catch((error) => {
+        console.error(error);
+        setErrorMessage('Failed to send password reset email. Please try again later.');
+      });
+  };
 
   const handleEmailChange = (e) => {
     e.preventDefault();
-    console.log(e.target.email[0].value); 
-    console.log(e.target.email[1].value);
-    // console.log(e.target.email[2].value);   
-    if(e.target.email[0].value !== auth.currentUser.email){
-      alert('Current email is incorrect');
+    const currentEmail = e.target.email[0].value;
+    const newEmail = e.target.email[1].value;
+    const newPassword = e.target.password.value;
+    const newUsername = e.target.username.value; // Added username field
+
+    if (currentEmail !== auth.currentUser.email) {
+      setErrorMessage('Current email is incorrect');
       return;
     }
-    // if(e.target.email[1].value !== e.target.email[2].value){
-    //   alert('New email does not match');
-    //   return;
-    // }
-    updateEmail(auth.currentUser, e.target.email[1].value).then(() => {
-      alert('Email updated!');
-      e.target.email[0].value = '';
-      e.target.email[1].value = '';
-      // e.target.email[2].value = '';
-      e.target.password.value = '';
-    })
-    .catch((error) => {
-      const errorMessage = error.message;
-      if(errorMessage === 'auth/requires-recent-login'){
-        reauthenticateWithCredential(auth.currentUser, e.target.password.value)
-        .then(() => {
-          updateEmail(auth.currentUser, e.target.email[1].value)
-          .catch((error) => {
-            const errorMessage = error.message;
-            alert(errorMessage);
-          });
-        })
-        .catch((error) => {
-          const errorMessage = error.message;
-          alert(errorMessage);
-        });
-      }
-    });
+
+    updateEmail(auth.currentUser, newEmail)
+      .then(() => {
+        alert('Email updated successfully!');
+        setEmailForm(false);
+      })
+      .catch((error) => {
+        console.error(error);
+        if (error.code === 'auth/requires-recent-login') {
+          reauthenticateWithCredential(auth.currentUser, newPassword)
+            .then(() => {
+              updateEmail(auth.currentUser, newEmail)
+                .then(() => {
+                  alert('Email updated successfully!');
+                  setEmailForm(false);
+                })
+                .catch((error) => {
+                  console.error(error);
+                  setErrorMessage('Failed to update email. Please try again later.');
+                });
+            })
+            .catch((error) => {
+              console.error(error);
+              setErrorMessage('Failed to reauthenticate. Please try again later.');
+            });
+        } else {
+          setErrorMessage('Failed to update email. Please try again later.');
+        }
+      });
+  };
+
+  const handleUsernameChange = (e) => {
+    e.preventDefault();
+    const newUsername = e.target.username.value;
+    setUsername(newUsername);
   }
-  
+
   return (
-    <div>
-      <a href="/dashboard">Back to Dashboard</a>
+    <div id="profile-container">
       <h2>Profile</h2>
-      <button onClick={() => handlePasswordChange()}>Reset Password</button>
+      <button onClick={() => setUsername(!username)}>Change Username?</button>
+      <button onClick={handlePasswordChange}>Reset Password</button>
       <button onClick={() => setEmailForm(!emailForm)}>Change Email?</button>
 
-        { emailForm? 
+      {emailForm && (
         <form onSubmit={handleEmailChange}>
           <label>
             Current Email:
-            <input type="email" name="email" />
+            <input type="email" name="email" required />
           </label>
-          <br/>
+          <br />
           <label>
             New Email:
-            <input type="email" name="email" />
-          </label>
-          <br/>
-          {/* <label>
-            Confirm New Email:
-            <input type="email" name="email" />
-          </label>
-          <br/> */}
-          <label>
-            Enter your password to confirm changes:
-            <input type="password" name="password" />
+            <input type="email" name="email" required />
           </label>
           <input type="submit" value="Save" />
-          
         </form>
-        : null
-        }
+      )}
+      
+      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+
+      {username && (
+        <form onSubmit={handleUsernameChange}>
+          <label>
+            New Username:
+            <input type="text" name="username" required />
+          </label>
+          <input type="submit" value="Save" />
+        </form>
+      )}
+      
     </div>
   );
-}
+};
 
 export default Profile;

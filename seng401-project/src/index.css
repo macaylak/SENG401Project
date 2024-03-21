@@ -1,5 +1,12 @@
 /* index.css */
 
+/* colors */
+:root {
+  --primary-color: #43081b;
+  --secondary-color: #fff;
+  --tertiary-color: #007bff;
+}
+
 body {
   margin: 0px;
   padding: 0;
@@ -62,3 +69,4 @@ h1 {
   background-color: #fff; /* Change background color on hover */
   color: #43081b; /* Change text color on hover */
 }
+
