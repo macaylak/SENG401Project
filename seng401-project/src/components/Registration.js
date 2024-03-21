@@ -1,6 +1,8 @@
 // Import necessary modules
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './styles/Registration.css';
+import RegistrationController from './controllers/RegistrationController';
 
 import { auth } from '../firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
@@ -9,19 +11,24 @@ function Registration() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
-  const handleRegister = async () => {
-    if (password === confirmPassword) {
-      try {
-        await createUserWithEmailAndPassword(auth, email, password); 
+
+  const handleRegister = () => {
+    RegistrationController.register(
+      email, 
+      password, 
+      confirmPassword,
+      () => {
         console.log('Registration successful');
-        window.location.reload();
-      } catch (error) {
-        console.error('Error registering user:', error.message);
+        navigate('/login');
+      },
+      (errorMessage) => {
+        console.error(errorMessage);
+        setError(errorMessage);
       }
-    } else {
-      console.log('Passwords do not match');
-    }
+    );
   };
 
   return (

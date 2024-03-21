@@ -1,13 +1,16 @@
 // Profile.js
 import React from 'react';
-import {auth} from '../firebase';
-import { updatePassword, sendPasswordResetEmail, updateEmail, reauthenticateWithCredential } from "firebase/auth";
 import { useState } from 'react';
+import { auth } from '../firebase';
+import { updatePassword, sendPasswordResetEmail, updateEmail, reauthenticateWithCredential } from "firebase/auth";
+import ProfileController from './controllers/ProfileController';
 
 
 const Profile = () => {
   const [password, setPassword] = useState('');
   const [emailForm, setEmailForm] = useState(false);
+  const [error, setError] = useState('');
+
 
   // // const auth = getAuth();
   // sendPasswordResetEmail(auth, email)
@@ -16,22 +19,21 @@ const Profile = () => {
   //     // ..
   //   })
   //   .catch((error) => {
-  //     const errorCode = error.code;
+  //     const errorCode = error.code;  
   //     const errorMessage = error.message;
   //     // ..
   // });
 
   const handlePasswordChange = () => {
-    sendPasswordResetEmail(auth, auth.currentUser.email)
-    .then(() => {
-      alert('Password reset email sent!');
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode, errorMessage);
-    });
-  }
+    ProfileController.resetPassword(
+      auth.currentUser.email,
+      (message) => alert(message),
+      (error) => {
+        console.log(error.code, error.message);
+        setError(error.message);
+      }
+    );
+  };
 
   const handleEmailChange = (e) => {
     e.preventDefault();

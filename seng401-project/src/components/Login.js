@@ -3,26 +3,24 @@
 import React, { useState } from 'react';
 import './styles/Login.css';
 import { useNavigate } from 'react-router-dom'; 
-import { auth } from '../firebase'; 
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import LoginController from './controllers/LoginController';
+
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate(); 
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
-  const handleLogin = async () => {
-    try {
-      // Sign in user with email and password
-      await signInWithEmailAndPassword(auth, email, password);
-      console.log('Login successful');
-      navigate('/dashboard');
-    } catch (error) {
-      console.error('Error logging in:', error.message);
-      alert('Invalid credentials. Please try again.');
-    }
+  const handleLogin = () => {
+    LoginController.login(email, password, 
+      () => navigate('/dashboard'),
+      (errorMessage) => {
+        alert(errorMessage);
+        setError(errorMessage); // Use setError in your UI to show error messages
+      }
+    );
   };
-
     return (
       <div className='BackDropLogin'>
     
