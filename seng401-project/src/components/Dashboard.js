@@ -160,7 +160,7 @@ function Dashboard() {
       <div className="sidemenu">
         <ul>
           {/* new recipe button */}
-          <button onClick={handleNewRecipeClick}><span class="material-icons-outlined">restaurant_menu</span> New Recipe +</button>
+          <button className = "newRecipeButton" onClick={handleNewRecipeClick}><span class="material-icons-outlined">restaurant_menu</span> New Recipe +</button>
           <li><span class="material-icons-outlined">account_circle</span><a href='/profile' className="pro"> Profile</a></li>
           <li><span class="material-icons-outlined">saved_search</span> My Recipes</li>
           <li><span class="material-icons-outlined">menu_book</span> Meal Plan</li>
