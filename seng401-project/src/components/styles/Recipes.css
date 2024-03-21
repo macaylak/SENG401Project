@@ -1,0 +1,86 @@
+/* Recipes.css */
+
+/* Container styles */
+.recipe-list {
+    margin: 20px 0;
+    width: 600px;
+  }
+  
+  /* Title styles */
+  .recipe-list h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  /* Search bar styles */
+  .search-bar {
+    margin-bottom: 10px;
+  }
+  
+  .search-bar input {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+
+  /* .slider {
+    display: flex;
+  }
+
+  .slick-slide {
+    position: relative;
+    left: 0;
+  }
+
+  .slick-slide:not(:first-child) {
+    margin-left: -50px;
+  }
+
+  .slick-slide:hover {
+    transform: translateY(-20px);
+  }
+
+  .slick-slide:hover ~ .slick-slide {
+    left: 50px;
+  } */
+
+  
+  /* Recipes.css */
+
+/* Slider container styles */
+.slider {
+    width: 100%; /* Ensure the slider takes full width */
+  }
+  
+  /* Slide item styles */
+  .slick-slide {
+    padding: 0 25px; /* Add padding to the slides */
+  }
+  
+  /* Slide item hover effect */
+  .slick-slide:hover {
+    transform: scale(1.05); /* Scale up the slide on hover */
+    transition: transform 0.3s ease; /* Add transition effect */
+  }
+  
+  /* Expanded view styles */
+  .expanded-view {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    transition: all 0.3s ease; /* Add transition effect */
+  }
+  
+  .expanded-view.show {
+    opacity: 1; /* Show expanded view */
+    max-height: 100px; /* Set max height for expanded view */
+    transition: all 0.3s ease; /* Add transition effect */
+  }
+
+  
+  /* Add more styles as needed */
+  

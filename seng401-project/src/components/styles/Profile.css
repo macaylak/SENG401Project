@@ -1,0 +1,76 @@
+/* Profile container */
+/* #profile-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  } */
+  
+  /* Profile form */
+  /* #profile-container form {
+    margin-top: 20px;
+  } */
+  
+  /* #profile-container form label {
+    display: block;
+    margin-bottom: 10px;
+  } */
+  
+  #profile-container form input[type="email"],
+  #profile-container form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+  }
+  
+  #profile-container form input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  #profile-container form input[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Error message */
+  #profile-container p {
+    color: #ff0000;
+    margin-top: 10px;
+  }
+  
+  /* Back to Dashboard link */
+  #profile-container a {
+    display: block;
+    margin-bottom: 20px;
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  #profile-container a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Buttons */
+  #profile-container button {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  #profile-container button:hover {
+    background-color: #218838;
+  }
+  
