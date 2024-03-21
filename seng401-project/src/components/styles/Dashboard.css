@@ -27,19 +27,29 @@ body {
   background-color: #ffffff;
 }
 
+.material-icons-outlined {
+  vertical-align: middle;
+  line-height: 1px;
+}
+
 h2 {
-  margin-top: 0px;
-  padding-top: 20px;
+  margin: 0;
+  padding: 20px;
   color: #4d4d4d;
+  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
 }
 
 .sidemenu {
   float: left;
-  width: 20%;
-  height: 100%;
+  width: 15%;
+  height: 50%;
+  margin-bottom: 0px;
   background-color: #f4f4f4;
   padding: 20px;
+  margin-top: -60px;
+  margin-bottom: -80px;
   border-right: 1px solid #d9d9d9;
+  -webkit-transition: all 0.5s;
 }
 
 .sidemenu ul {
@@ -50,15 +60,19 @@ h2 {
 .sidemenu ul li {
   padding: 10px;
   margin: 10px;
-  background-color: #d9d9d9;
+  background-color: #f4f4f4;
   border-radius: 5px;
-  text-align: center;
+  text-align: left;
   cursor: pointer;
+  
 }
 
+
 .sidemenu ul li:hover {
-  background-color: #b3b3b3;
+  background-color: #a8a5a5;
 }
+
+
 
 .main-content {
   float: left;
@@ -74,9 +88,11 @@ h2 {
 }
 
 button {
-  margin: 20px;
+  margin: 100px;
   padding: 10px;
-  background-color: #4d4d4d;
+  width: 200px;
+  margin-left: 7px;
+  background-color: #444444;
   color: white;
   border: none;
   border-radius: 5px;

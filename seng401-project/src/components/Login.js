@@ -1,10 +1,11 @@
 
 // Import necessary modules
 import React, { useState } from 'react';
-import './styles/Login.css';
 import { useNavigate } from 'react-router-dom'; 
+import { auth } from '../firebase'; 
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import './styles/Login.css';
 import LoginController from './controllers/LoginController';
-
 
 function Login() {
   const [email, setEmail] = useState('');

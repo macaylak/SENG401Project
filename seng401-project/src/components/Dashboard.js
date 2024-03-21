@@ -4,6 +4,11 @@ import {addRecipe, auth, colRef, deleteRecipe} from '../firebase';
 import { signOut, onAuthStateChanged } from "firebase/auth";
 import {useNavigate} from 'react-router-dom';
 import { getDocs, where, query, doc } from 'firebase/firestore';
+import './styles/Dashboard.css';
+
+
+
+
 
 function Dashboard() {
   const [showChatBox, setShowChatBox] = useState(false);
@@ -154,10 +159,12 @@ function Dashboard() {
       {/* sidemenu */}
       <div className="sidemenu">
         <ul>
-          <li><a href='/profile'>Profile</a></li>
-          <li>Recipes</li>
-          <li>Meal Plan</li>
-          <li>Settings</li>
+          {/* new recipe button */}
+          <button onClick={handleNewRecipeClick}><span class="material-icons-outlined">restaurant_menu</span> New Recipe +</button>
+          <li><span class="material-icons-outlined">account_circle</span><a href='/profile' className="pro"> Profile</a></li>
+          <li><span class="material-icons-outlined">saved_search</span> My Recipes</li>
+          <li><span class="material-icons-outlined">menu_book</span> Meal Plan</li>
+          <li><span class="material-icons-outlined">settings</span> Settings</li>
         </ul>
         <button onClick={logOut}>Logout</button>
       </div>
@@ -177,8 +184,7 @@ function Dashboard() {
                 <button onClick={() => handleDelete(recipe.id)}>Delete</button>
               </div>
       ))}
-      {/* new recipe button */}
-      <button onClick={handleNewRecipeClick}>New Recipe</button>
+      
       {/* recipe display */}
       <div className="recipe-display">
         {/* recipe cards */}
