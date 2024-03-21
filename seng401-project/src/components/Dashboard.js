@@ -4,6 +4,8 @@ import {addRecipe, auth, colRef, deleteRecipe} from '../firebase';
 import { signOut, onAuthStateChanged } from "firebase/auth";
 import {useNavigate} from 'react-router-dom';
 import { getDocs, where, query, doc } from 'firebase/firestore';
+import './styles/Dashboard.css';
+
 
 function Dashboard() {
   const [showChatBox, setShowChatBox] = useState(false);
