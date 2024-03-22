@@ -63,7 +63,7 @@ function About() {
         <div>
 
           <div className='AboutFooter'>
-            <p className='LF'>&copy; 2024 Recipes4You</p>
+            <p className='AF'>&copy; 2024 Recipes4You</p>
           </div>
       
         </div>
