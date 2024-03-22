@@ -37,6 +37,7 @@ function AppContent() {
       {!(isLoginPage || isRegistrationPage || isDashboardPage || isProfilePage) &&(
         <section>
           <img className='logo' src="/Recipe4YouLogo.png" alt="logo" />
+          <div class = 'scrollDown'></div>
           <div className="account">
             <ul>
               <li>

@@ -2,7 +2,11 @@
 
 /* About.css */
 
-
+.Boxes{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
 
 /* Center the entire content */
 .content {
@@ -28,6 +32,46 @@
   justify-content: flex-end; /* Align content to the bottom */
 }
 
+.statement {
+  text-align: center;
+}
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* center boxes horiontally */
+  width: 100%;
+  margin: 2rem auto;
+}
+
+.box {
+  margin: 0px 50px; /* to bring boxes closer together */
+  width: 300px; /* adjust to fit within wrapper */
+  height: auto;
+  text-align: center;
+  background-color: rgb(238, 237, 237);
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.box:hover{
+  transition: 0.5s;
+  background-color: rgb(209, 221, 235);
+  color: white;
+}
+
+.box img{
+  width: 100px;
+  border-radius: 0%;
+  margin: 0 auto;
+  
+
+}
+
+h6 {
+  font-family: "Oswald", Sans-serif;
+  font-size: 1rem;
+}
 /* Style the signature */
 .signature {
   margin-top: 27px; /* Push signature to the bottom of the container */
@@ -53,7 +97,7 @@ p {
       color: rgb(68, 115, 160);
       text-align: center;
       font-family: "Oswald", Sans-serif;
-      font-size: 1.75rem;
+      font-size: 3rem;
       font-weight: 700;
       letter-spacing: 1px;
       margin-top: 60px;
@@ -82,12 +126,30 @@ p {
 h4 {
   color: #1a1918;
   font-family: "Oswald", Sans-serif;
+  font-size: 2rem;
   font-weight: 700;
   font-size: large;
+  text-align: center;
   letter-spacing: 1px;
   text-transform: uppercase;
   margin-top: 0; /* Remove default margin */
   margin-bottom: 10px; /* Add spacing below the subheading */
+}
+
+.AboutFooter {
+  
+  position: absolute;
+  width: 100%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  background-color: #0e0b28;
+  color: white;
+  text-align: center;
+
+
 }
 
     .content {
