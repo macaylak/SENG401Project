@@ -1,0 +1,79 @@
+/* styles/Footer.css */
+
+.PH{
+    color: #130e41;
+    margin-top: 35px;
+}
+.profile-container {
+    display: flex;
+  }
+  
+  .sidebar {
+    height: 100vh; /* Make sidebar extend the full height of the viewport */
+    width: 230px;
+    background-color:#061c34;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center items vertically */
+    align-items: center; /* Center items horizontally */
+  }
+  
+  .sidebar button {
+    color: #fff;
+    background-color: #061c34; /* Change background color */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Add transition for smoother hover effect */
+    font-size: 15px;
+    font-family: Oswald, sans-serif;
+    border: none;
+    height: 60px;
+    width: 100%;
+
+  }  
+  
+.sidebar button:hover{
+
+    background-color: #4b729b; /* Change background color on hover */
+    color: #fff; /* Change text color on hover */
+
+  
+  }
+
+
+
+  
+  
+  .main-content {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .centered-form {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .centered-form label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .centered-form input[type="password"],
+  .centered-form input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .centered-form input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .centered-form input[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  

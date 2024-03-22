@@ -141,6 +141,11 @@ function Dashboard() {
       })
   }
 
+
+  const accountSettings = () =>{
+    navigate('/Profile');
+  }
+
   const handleDelete = (recipe) => {
     if (recipe.id) {
       deleteRecipe(recipe.id);
@@ -149,9 +154,6 @@ function Dashboard() {
       setRecipes(recipes.filter((r) => r.title !== recipe.title));
     }
   }
-
-
- 
   
 
   return (
@@ -164,8 +166,7 @@ function Dashboard() {
     <ul>
       {/* new recipe button */}
       <button className="newRecipeButton" onClick={handleNewRecipeClick}><span class="material-icons-outlined">restaurant_menu</span> New Recipe +</button>
-      <button className='Profile'>Profile</button>
-      <button className='Settings'>Settings</button>
+      <button className='Profile'onClick={accountSettings} >Account</button>
       <button className='DashboardButton' onClick={logOut}>Logout</button>
     </ul>
 
