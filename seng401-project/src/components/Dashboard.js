@@ -6,6 +6,8 @@ import {useNavigate} from 'react-router-dom';
 import { getDocs, where, query, doc } from 'firebase/firestore';
 import './styles/Dashboard.css';
 
+import './styles/Dashboard.css';
+
 
 
 
@@ -139,9 +141,13 @@ function Dashboard() {
       })
   }
 
-  const handleDelete = (id) => {
-    deleteRecipe(id);
-    setRecipes(recipes.filter((recipe) => recipe.id !== id));
+  const handleDelete = (recipe) => {
+    if (recipe.id) {
+      deleteRecipe(recipe.id);
+      setRecipes(recipes.filter((r) => r.id !== recipe.id));
+    } else {
+      setRecipes(recipes.filter((r) => r.title !== recipe.title));
+    }
   }
 
 
@@ -182,8 +188,7 @@ function Dashboard() {
                 <pre>{recipe.prepTime}</pre>
                 <pre>{recipe.nutritionalFacts}</pre>
                 <button onClick={() => handleSave(recipe)}>Save</button>
-
-                <button onClick={() => handleDelete(recipe.id)}>Delete</button>
+                <button onClick={() => handleDelete(recipe)}>Delete</button>
               </div>
       ))}
       
