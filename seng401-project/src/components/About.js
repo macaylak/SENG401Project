@@ -21,7 +21,7 @@ function About() {
         <div className="Boxes">
         <div class = 'wrapper'>
           <div class = 'box'>
-            <img src = 'food' src = "https://cdn0.iconfinder.com/data/icons/thin-essentials/57/thin-058_recycle_bin_delete_garbage-512.png"/>
+            <img src = "https://cdn0.iconfinder.com/data/icons/thin-essentials/57/thin-058_recycle_bin_delete_garbage-512.png"/>
             <h6 class = 'boxheader'> Reduce Waste</h6>
             <p>
               Our platform suggests recipes based on the ingredients you already have, 
@@ -34,7 +34,7 @@ function About() {
 
         <div class = 'wrapper'>
           <div class = 'box'>
-            <img src = 'food' src = "https://static-00.iconduck.com/assets.00/recipe-keeper-icon-2048x1890-iha2xi6m.png"/>
+            <img src = "https://static-00.iconduck.com/assets.00/recipe-keeper-icon-2048x1890-iha2xi6m.png"/>
             <h6 class = 'boxheader'> Generate Infinite Recipes</h6>
             <p>
               With Recipes4You, your culinary possibilities are endless. Our AI-powered 
@@ -47,7 +47,7 @@ function About() {
 
         <div class = 'wrapper'>
           <div class = 'box'>
-            <img src = 'food' src = "https://static.thenounproject.com/png/1047774-200.png"/>
+            <img src = "https://static.thenounproject.com/png/1047774-200.png"/>
             <h6 class = 'boxheader'> Strategic Meal Planning</h6>
             <p>
               Our platform suggests recipes that align with your nutritional goals, making 

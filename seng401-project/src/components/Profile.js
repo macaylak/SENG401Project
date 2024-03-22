@@ -10,6 +10,7 @@ const Profile = () => {
   const [changePasswordForm, setChangePasswordForm] = useState(false);
   const [error, setError] = useState('');
 
+
   const handlePasswordChange = () => {
     ProfileController.resetPassword(
       auth.currentUser.email,
@@ -73,40 +74,40 @@ const Profile = () => {
     
 <div className="profile-container">
   <div className="sidebar">
-  <button onClick={handleEmailButtonClick}>CHANGE EMAIL</button>
-    <button onClick={handlePasswordButtonClick}>CHANGE PASSWORD</button>
-    <button onClick={handleBackButtonClick}>BACK TO DASHBOARD</button>
+  <button onClick={handleEmailButtonClick}>✉  CHANGE EMAIL</button>
+    <button onClick={handlePasswordButtonClick}>🗝  CHANGE PASSWORD</button>
+    <button onClick={handleBackButtonClick}>◀ BACK TO RECIPES</button>
   </div>
       <div className="main-content">
         <h2 className="PH">Profile</h2>
-        { changePasswordForm && 
+
+        { changePasswordForm &&
+        
           <form className="centered-form" onSubmit={handlePasswordChange}>
             <label>
-              Enter your current password:
-              <input type="password" name="password" />
+              <input type="password" placeholder='Current Password' name="password" />
             </label>
-            <input type="submit" value="Reset Password" />
+            <input type="submit" value="Reset Password"  />
           </form>
         }
+
+       
         { emailForm && 
           <form className="centered-form" onSubmit={handleEmailChange}>
             <label>
-              Current Email:
-              <input type="email" name="email" />
+              <input type="email" placeholder='Current Email' name="email"  />
             </label>
             <label>
-              New Email:
-              <input type="email" name="email" />
+              <input type="email" placeholder='New Email' name="email" />
             </label>
             <label>
-              Enter your password to confirm changes:
-              <input type="password" name="password" />
+              <input type="password" placeholder = 'Enter password to confirm changes' name="password" />
             </label>
             <input type="submit" value="Save" />
           </form>
         }
+        </div>
       </div>
-    </div>
   );
 }
 
