@@ -130,5 +130,17 @@
 }
 
 
+.main-content {
+  float: left;
+  width: 80%;
+  height: 100%;
+  padding: 20px;
+}
+
+.recipe-display {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
 
 

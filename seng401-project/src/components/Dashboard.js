@@ -111,6 +111,8 @@ function Dashboard() {
     } catch (error) {
       console.error('Error sending message:', error);
     }
+    setShowChatBox(false)
+
   };
   
  
@@ -214,6 +216,9 @@ function Dashboard() {
       )}
     </div>
   );
+
+
+
 }
 
 export default Dashboard;
