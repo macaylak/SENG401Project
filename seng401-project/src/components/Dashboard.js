@@ -130,7 +130,7 @@ function Dashboard() {
     signOut(auth)
       .then(() => {
         console.log("user signed out");
-        navigate('/login');
+        navigate('/');
       })
       .catch((err) => {
         console.error(err.message);
@@ -147,33 +147,33 @@ function Dashboard() {
   
 
   return (
-    <div>
-      {/* hide account component */}
-      <style>{`
-        .account {
-          display: none;
-        }
-      `}</style>
-      {/* dashboard title */}
-      <h2 className='DashboardHeader'>Dashboard</h2>
-      {/* sidemenu */}
-      <div className="sidemenu">
-        <ul>
-          {/* new recipe button */}
-          <button className = "newRecipeButton" onClick={handleNewRecipeClick}><span class="material-icons-outlined">restaurant_menu</span> New Recipe +</button>
-          <li><span class="material-icons-outlined">account_circle</span><a href='/profile' className="pro"> Profile</a></li>
-          <li><span class="material-icons-outlined">saved_search</span> My Recipes</li>
-          <li><span class="material-icons-outlined">menu_book</span> Meal Plan</li>
-          <li><span class="material-icons-outlined">settings</span> Settings</li>
-        </ul>
-        <button className='DashboardButton' onClick={logOut}>Logout</button>
-      </div>
+  <div>
+  <div className='HeaderItems'>
+  <h1 className='webtitle'>RECIPES FOR YOU</h1>
+  <p className='slogan'>Eat Well. Live Well.</p>
+  <div className="menu">
+
+    <ul>
+      {/* new recipe button */}
+      <button className="newRecipeButton" onClick={handleNewRecipeClick}><span class="material-icons-outlined">restaurant_menu</span> New Recipe +</button>
+      <button className='Profile'>Profile</button>
+      <button className='Settings'>Settings</button>
+      <button className='DashboardButton' onClick={logOut}>Logout</button>
+    </ul>
+
+    <div class="search-container">
+      <input type="text" placeholder="Find Recipes" class="search-bar"></input>
+    </div>
+  </div>
+</div>
+
       {/* main content */}
       <div className="main-content">
         {/* content goes here */}
       </div>
+
       {recipes.map((recipe, index) => (
-              <div key={recipe.id} className={`message bot`}>
+              <div key={recipe.id} className="Menu">
                 <h3 className='recipeTitle'>{recipe.title}</h3>
                 <pre>{recipe.ingredients}</pre>
                 <pre>{recipe.instructions}</pre>
