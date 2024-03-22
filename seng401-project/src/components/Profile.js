@@ -1,28 +1,14 @@
-// Profile.js
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { auth } from '../firebase';
-import { updatePassword, sendPasswordResetEmail, updateEmail, reauthenticateWithCredential } from "firebase/auth";
+import './styles/Profile.css';
+import { updatePassword, updateEmail, reauthenticateWithCredential } from "firebase/auth";
 import ProfileController from './controllers/ProfileController';
-
 
 const Profile = () => {
   const [password, setPassword] = useState('');
   const [emailForm, setEmailForm] = useState(false);
+  const [changePasswordForm, setChangePasswordForm] = useState(false);
   const [error, setError] = useState('');
-
-
-  // // const auth = getAuth();
-  // sendPasswordResetEmail(auth, email)
-  //   .then(() => {
-  //     // Password reset email sent!
-  //     // ..
-  //   })
-  //   .catch((error) => {
-  //     const errorCode = error.code;  
-  //     const errorMessage = error.message;
-  //     // ..
-  // });
 
   const handlePasswordChange = () => {
     ProfileController.resetPassword(
@@ -37,27 +23,19 @@ const Profile = () => {
 
   const handleEmailChange = (e) => {
     e.preventDefault();
-    console.log(e.target.email[0].value); 
-    console.log(e.target.email[1].value);
-    // console.log(e.target.email[2].value);   
-    if(e.target.email[0].value !== auth.currentUser.email){
+    if (e.target.email[0].value !== auth.currentUser.email) {
       alert('Current email is incorrect');
       return;
     }
-    // if(e.target.email[1].value !== e.target.email[2].value){
-    //   alert('New email does not match');
-    //   return;
-    // }
     updateEmail(auth.currentUser, e.target.email[1].value).then(() => {
       alert('Email updated!');
       e.target.email[0].value = '';
       e.target.email[1].value = '';
-      // e.target.email[2].value = '';
       e.target.password.value = '';
     })
     .catch((error) => {
       const errorMessage = error.message;
-      if(errorMessage === 'auth/requires-recent-login'){
+      if (errorMessage === 'auth/requires-recent-login') {
         reauthenticateWithCredential(auth.currentUser, e.target.password.value)
         .then(() => {
           updateEmail(auth.currentUser, e.target.email[1].value)
@@ -73,40 +51,61 @@ const Profile = () => {
       }
     });
   }
-  
-  return (
-    <div>
-      <a href="/dashboard">Back to Dashboard</a>
-      <h2>Profile</h2>
-      <button onClick={() => handlePasswordChange()}>Reset Password</button>
-      <button onClick={() => setEmailForm(!emailForm)}>Change Email?</button>
 
-        { emailForm? 
-        <form onSubmit={handleEmailChange}>
-          <label>
-            Current Email:
-            <input type="email" name="email" />
-          </label>
-          <br/>
-          <label>
-            New Email:
-            <input type="email" name="email" />
-          </label>
-          <br/>
-          {/* <label>
-            Confirm New Email:
-            <input type="email" name="email" />
-          </label>
-          <br/> */}
-          <label>
-            Enter your password to confirm changes:
-            <input type="password" name="password" />
-          </label>
-          <input type="submit" value="Save" />
-          
-        </form>
-        : null
+
+  const handlePasswordButtonClick = () => {
+    setChangePasswordForm(true);
+    setEmailForm(false); // Hide email form if it's currently displayed
+  };
+  
+  const handleEmailButtonClick = () => {
+    setEmailForm(true);
+    setChangePasswordForm(false); // Hide change password form if it's currently displayed
+  };
+
+
+  const handleBackButtonClick = () => {
+    window.location.href = '/dashboard';
+  }
+
+  return (
+
+    
+<div className="profile-container">
+  <div className="sidebar">
+  <button onClick={handleEmailButtonClick}>CHANGE EMAIL</button>
+    <button onClick={handlePasswordButtonClick}>CHANGE PASSWORD</button>
+    <button onClick={handleBackButtonClick}>BACK TO DASHBOARD</button>
+  </div>
+      <div className="main-content">
+        <h2 className="PH">Profile</h2>
+        { changePasswordForm && 
+          <form className="centered-form" onSubmit={handlePasswordChange}>
+            <label>
+              Enter your current password:
+              <input type="password" name="password" />
+            </label>
+            <input type="submit" value="Reset Password" />
+          </form>
         }
+        { emailForm && 
+          <form className="centered-form" onSubmit={handleEmailChange}>
+            <label>
+              Current Email:
+              <input type="email" name="email" />
+            </label>
+            <label>
+              New Email:
+              <input type="email" name="email" />
+            </label>
+            <label>
+              Enter your password to confirm changes:
+              <input type="password" name="password" />
+            </label>
+            <input type="submit" value="Save" />
+          </form>
+        }
+      </div>
     </div>
   );
 }

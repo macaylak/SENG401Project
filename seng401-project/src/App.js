@@ -30,7 +30,8 @@ function AppContent() {
   const isLoginPage = location.pathname === '/login';
   const isRegistrationPage = location.pathname === '/registration';
   const isDashboardPage = location.pathname === '/dashboard';
-  const isProfilePage = location.pathname === '/profile';
+  const isProfilePage = location.pathname === '/Profile';
+
 
   return (
     <div>
