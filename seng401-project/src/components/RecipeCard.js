@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { FaCheck, FaTrash } from 'react-icons/fa';
+import { FaCheck, FaTrash, FaRedo } from 'react-icons/fa';
 import './styles/RecipeCard.css';
 
-function RecipeCard({ recipe, handleSave, handleDelete }) {
+function RecipeCard({ recipe, handleSave, handleDelete, handleRegenerate }) {
   const { title, ingredients, instructions, prepTime, nutritionalFacts } = recipe;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -14,7 +14,12 @@ function RecipeCard({ recipe, handleSave, handleDelete }) {
   const prepTimeList = prepTime.split('\n');
   const ingredientsList = ingredients.split('\n');
 
-
+  // useEffect(() => {
+  //   if(recipe.id) {
+  //     setIsSaved(true);
+  //     return;
+  //   }
+  // });
 
 
 
@@ -130,9 +135,14 @@ function RecipeCard({ recipe, handleSave, handleDelete }) {
               {isSaved ? (
                 <p>Saved!</p>
               ) : (
-                <button onClick={handleSaveRecipe} disabled={isLoading}>
-                  <FaCheck/> {isLoading ? 'Saving...' : 'Save'}
-                </button>
+                <>
+                  <button disabled={isLoading} onClick={handleRegenerate}>
+                    Remake <FaRedo/>
+                  </button>
+                  <button onClick={handleSaveRecipe} disabled={isLoading}>
+                    <FaCheck/> {isLoading ? 'Saving...' : 'Save'}
+                  </button>
+                </>
               )}
               <button onClick={handleDeleteRecipe}><FaTrash/></button>
             </div>

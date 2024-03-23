@@ -157,13 +157,17 @@ function Dashboard() {
       let filteredRecipes = [];
 
       snapshot.docs.forEach((doc) => {
-          // books.push({ ...doc.data(), id: doc.id });
         if (doc.data().title.includes(search) || doc.data().ingredients.includes(search)) {
           filteredRecipes.push(doc.data());
         }
       })
       setSearchedRecipes(filteredRecipes);
     })
+  }
+
+  const handleRegenerate = async (recipe) => {
+    console.log("hello", recipe)
+    // save things like cuisine, diet, allergy, then regenerate
   }
 
   return (
@@ -185,7 +189,7 @@ function Dashboard() {
       <main>
       <div className="content">
         {/* Render content based on user selection */}
-        {content === 'recipes' && <Recipes recipes={recipes} handleSave={handleSave} handleDelete={handleDelete} searching={searching} searchedRecipes={searchedRecipes}  />}
+        {content === 'recipes' && <Recipes recipes={recipes} handleSave={handleSave} handleDelete={handleDelete} searching={searching} searchedRecipes={searchedRecipes} handleRegenerate={handleRegenerate}  />}
       </div>
       </main>
       {showModal && (

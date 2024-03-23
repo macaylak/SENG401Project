@@ -6,7 +6,7 @@ import { FaList } from 'react-icons/fa';
 // import grid icon
 import { FaTh } from 'react-icons/fa';
 
-const Recipes = ({ recipes, handleSave, handleDelete, recipesPerRow, searching, searchedRecipes }) => {
+const Recipes = ({ recipes, handleSave, handleDelete, recipesPerRow, searching, searchedRecipes, handleRegenerate }) => {
   const [searchQuery] = useState('');
   const [isGridView, setIsGridView] = useState(true);
 
@@ -34,6 +34,7 @@ const Recipes = ({ recipes, handleSave, handleDelete, recipesPerRow, searching, 
             recipe={recipe}
             handleSave={() => handleSave(recipe)}
             handleDelete={() => handleDelete(recipe)}
+            handleRegenerate={() => handleRegenerate(recipe)}
           />
         ))}
       </div>
