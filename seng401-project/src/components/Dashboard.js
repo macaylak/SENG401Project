@@ -22,7 +22,14 @@ function Dashboard() {
 
   useEffect(() => {
     count = 1;
+    if (auth.currentUser) {
+      getRecipes(auth.currentUser);
+    }
   }, []);
+
+  // useEffect(() => {
+  //   console.log(auth.currentUser)
+  // }, [auth.currentUser]);
 
   onAuthStateChanged(auth, (user) => {
     if (user && count === 1) {
