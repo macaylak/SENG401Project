@@ -2,17 +2,38 @@ import React, { useState } from 'react';
 import './styles/RecipeForm.css';
 import { FaPlus, FaTimes } from 'react-icons/fa';
 
+// Update InputWithButton component to handle label animation
 const InputWithButton = ({ name, value, onChange, onAdd, disabled }) => {
+  const [focused, setFocused] = useState(false);
+
+  const handleFocus = () => {
+    setFocused(true);
+  };
+
+  const handleBlur = () => {
+    if (!value.trim()) {
+      setFocused(false);
+    }
+  };
+
   return (
-    <div className="input-group">
+    <div className={`input-group ${focused ? 'focused' : ''}`}>
       <label>{name.charAt(0).toUpperCase() + name.slice(1)}</label>
-      <input name={name} type="text" value={value} onChange={onChange} />
+      <input 
+        name={name} 
+        type="text" 
+        value={value} 
+        onChange={onChange} 
+        onFocus={handleFocus} 
+        onBlur={handleBlur} 
+      />
       <button type="button" onClick={onAdd} disabled={disabled}>
         <FaPlus />
       </button>
     </div>
   );
 };
+
 
 function RecipeForm({ handleSubmit }) {
   const [inputs, setInputs] = useState({
@@ -79,8 +100,7 @@ function RecipeForm({ handleSubmit }) {
               {ingredientList.map((ingredient, index) => (
                 <li key={index}>
                   {ingredient}{' '}
-                  <button type="button" onClick={() => handleDeleteFromList(ingredientList, setIngredientList, index)}>
-                    <FaTimes size="lg" />
+                  <button id='delete-from-list' type="button" onClick={() => handleDeleteFromList(ingredientList, setIngredientList, index)}><FaTimes size="lg" />
                   </button>
                 </li>
               ))}

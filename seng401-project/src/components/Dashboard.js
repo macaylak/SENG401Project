@@ -5,7 +5,7 @@ import { signOut, onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
 import { getDocs, where, query } from 'firebase/firestore';
 import './styles/Dashboard.css';
-import { FaTimes } from 'react-icons/fa';
+import { FaTimes, FaPlus } from 'react-icons/fa';
 import Recipes from './Recipes';
 import RecipeForm from './RecipeForm';
 
@@ -56,6 +56,10 @@ function Dashboard() {
 
   const handleNewRecipeClick = () => {
     setShowModal(true);
+  };
+
+  const toggleModal = () => {
+    setShowModal(!showModal);
   };
 
   const handleCloseModal = () => {
@@ -139,7 +143,7 @@ function Dashboard() {
         <p className='slogan'>Eat Well. Live Well.</p>
         <div className="menu">
           <ul>
-            <button className="newRecipeButton" onClick={handleNewRecipeClick}><span class="material-icons-outlined">restaurant_menu</span> New Recipe +</button>
+            <button className="newRecipeButton" onClick={handleNewRecipeClick}><span class="material-icons-outlined">restaurant_menu</span>New Recipe +</button>
             <button className='Profile' onClick={accountSettings} >Account</button>
             <button className='DashboardButton' onClick={logOut}>Logout</button>
           </ul>
@@ -148,14 +152,16 @@ function Dashboard() {
           </div>
         </div>
       </div>
+      <main>
       <div className="content">
         {/* Render content based on user selection */}
         {content === 'recipes' && <Recipes recipes={recipes} handleSave={handleSave} handleDelete={handleDelete} />}
       </div>
+      </main>
       {showModal && (
           <div className="modal-overlay">
-            <div className="modal">
-              <button className="close-modal" onClick={handleCloseModal}><FaTimes /></button>
+            <div className="modal-form">
+              <span className="close" onClick={toggleModal}>&times;</span>
               {/* New Recipe Form */}
               <RecipeForm handleSubmit={handleSubmitNewRecipe} />
             </div>
