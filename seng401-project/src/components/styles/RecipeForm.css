@@ -7,11 +7,12 @@
     background: #f4f4f4;
     display: flex;
     flex-direction: column;
+    gap: 10px;
+    height: 700px;
 }
 
 .recipe-form h2 {
     font-size: 24px;
-    margin-bottom: 20px;
 }
 
 .recipe-form input {
@@ -100,34 +101,34 @@ label {
     display: flex;
     align-self: center;
     cursor: pointer;
+
   }
 
   .ingredient-list {
-    margin-top: 20px;
-    width: fit-content;
-
+    width: 100%;
+    height: 50px;
+    position: relative;
+    overflow: auto;
+    flex: autos;
     p {
         font-size: 20px;
-        margin: 10px;
-        padding: auto;
     }
 
     ul {
         list-style-type: none;
         display: flex;
         flex-direction: row;
-        flex-wrap: wrap;
         gap: 10px;
+        margin: 0;
+        padding: 0;
     }
 
     li {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 10px;
-        margin-bottom: 10px;
         background-color: #f4f4f4;
-        border-radius: 10px;
+        
     }
 
     li span {
@@ -148,33 +149,31 @@ label {
     }   
     
 }
-
 .cuisine-list {
-    margin-top: 20px;
-    width: fit-content;
-
+    width: 100%;
+    height: 50px;
+    position: relative;
+    overflow: auto;
+    flex: autos;
     p {
         font-size: 20px;
-        margin: 10px;
-        padding: auto;
     }
 
     ul {
         list-style-type: none;
         display: flex;
         flex-direction: row;
-        flex-wrap: wrap;
         gap: 10px;
+        margin: 0;
+        padding: 0;
     }
 
     li {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 10px;
-        margin-bottom: 10px;
         background-color: #f4f4f4;
-        border-radius: 10px;
+        
     }
 
     li span {
@@ -197,31 +196,30 @@ label {
 }
 
 .diet-list {
-    margin-top: 20px;
-    width: fit-content;
-
+    width: 100%;
+    height: 50px;
+    position: relative;
+    overflow: auto;
+    flex: autos;
     p {
         font-size: 20px;
-        margin: 10px;
-        padding: auto;
     }
 
     ul {
         list-style-type: none;
         display: flex;
         flex-direction: row;
-        flex-wrap: wrap;
         gap: 10px;
+        margin: 0;
+        padding: 0;
     }
 
     li {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 10px;
-        margin-bottom: 10px;
         background-color: #f4f4f4;
-        border-radius: 10px;
+        
     }
 
     li span {
@@ -240,34 +238,34 @@ label {
     button:hover {
         cursor: pointer;
     }   
+    
 }
 
 .allergy-list {
-    margin-top: 20px;
-    width: fit-content;
-
+    width: 100%;
+    height: 50px;
+    position: relative;
+    overflow: auto;
+    flex: autos;
     p {
         font-size: 20px;
-        margin: 10px;
-        padding: auto;
     }
 
     ul {
         list-style-type: none;
         display: flex;
         flex-direction: row;
-        flex-wrap: wrap;
         gap: 10px;
+        margin: 0;
+        padding: 0;
     }
 
     li {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 10px;
-        margin-bottom: 10px;
         background-color: #f4f4f4;
-        border-radius: 10px;
+        
     }
 
     li span {
@@ -286,4 +284,5 @@ label {
     button:hover {
         cursor: pointer;
     }   
+    
 }

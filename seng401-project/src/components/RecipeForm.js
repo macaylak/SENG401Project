@@ -52,16 +52,16 @@ function RecipeForm({ handleSubmit }) {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setInputs({ ...inputs, [name]: value });
-    
   };
 
   const handleAddToList = (list, setList, inputValue) => {
     if (inputValue.trim() !== '') {
       setList([...list, inputValue]);
-      setInputs({ ...inputs, [list]: '' });
-
+      setInputs({ ...inputs, [list]: '' }); // Reset the input field value
     }
   };
+  
+  
 
   const handleDeleteFromList = (list, setList, index) => {
     const updatedList = [...list];
