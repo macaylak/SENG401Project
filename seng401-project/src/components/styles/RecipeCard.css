@@ -167,3 +167,7 @@
 .prepTimeStyle {
   color: yellow;
 }
+
+button {
+  cursor: pointer;
+}
