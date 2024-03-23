@@ -89,8 +89,8 @@ const parseRecipe = (recipe) => {
       return {title: recipe}
   }
   var title = recipe.split("ingredients:")[0].trim()
-  if(title.includes("prep time")) {
-      title = title.split("prep time")[0].trim()
+  if(title.includes("time:")) {
+      title = title.split("time:")[0].trim()
   }
   if(title.includes("recipe:")) {
       title = title.split("recipe:")[1].trim()
@@ -105,7 +105,7 @@ const parseRecipe = (recipe) => {
   var ingredients = recipe.split("ingredients:")[1].split("instructions:")[0].trim()
   // ingredients = "ingredients:\n" + ingredients
 
-  var instructions = recipe.split("instructions:")[1].split("prep time:")[0].trim()
+  var instructions = recipe.split("instructions:")[1].split("time:")[0].trim()
   if(instructions.includes("nutritional facts")) {
       instructions = instructions.split("nutritional facts")[0].trim()
   }

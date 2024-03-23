@@ -6,7 +6,7 @@ import { FaList } from 'react-icons/fa';
 // import grid icon
 import { FaTh } from 'react-icons/fa';
 
-const Recipes = ({ recipes, handleSave, handleDelete, recipesPerRow }) => {
+const Recipes = ({ recipes, handleSave, handleDelete, recipesPerRow, searching, searchedRecipes }) => {
   const [searchQuery] = useState('');
   const [isGridView, setIsGridView] = useState(true);
 
@@ -28,7 +28,7 @@ const Recipes = ({ recipes, handleSave, handleDelete, recipesPerRow }) => {
     </div>
     <div className="recipe-list">
       <div className={`recipe-grid ${isGridView ? `recipes-per-row-${recipesPerRow}` : 'recipe-list-view'}`}>
-        {filteredRecipes.map((recipe) => (
+        {(searching? searchedRecipes : recipes).map((recipe) => (
           <RecipeCard
             key={recipe.id}
             recipe={recipe}

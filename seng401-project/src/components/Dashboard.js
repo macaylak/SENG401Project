@@ -3,7 +3,7 @@ import axios from 'axios'; // Import Axios or use fetch API
 import { addRecipe, auth, colRef, deleteRecipe } from '../firebase';
 import { signOut, onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
-import { getDocs, where, query } from 'firebase/firestore';
+import { getDocs, where, query, onSnapshot } from 'firebase/firestore';
 import './styles/Dashboard.css';
 import { FaTimes, FaPlus } from 'react-icons/fa';
 import Recipes from './Recipes';
@@ -16,6 +16,8 @@ function Dashboard() {
   const username = auth.currentUser ? auth.currentUser.email.split('@')[0] : '';
   const [showModal, setShowModal] = useState(false);
   const [content, setContent] = useState('recipes');
+  const [searchedRecipes, setSearchedRecipes] = useState([]); // Array to store searched recipes
+  const [searching, setSearching] = useState(false); // Boolean to check if user is searching
   var count = 0;
 
   useEffect(() => {
@@ -135,6 +137,28 @@ function Dashboard() {
     }
   }
 
+  const handleSearch = (e) => {
+    // query(colRef, where("title", "==", recipe_dict.title))
+    const search = e.target.value.toLowerCase();
+    if (search === '') {
+      setSearching(false);
+      return;
+    }
+    setSearching(true);
+    const q = query(colRef, where("user", "==", auth.currentUser.email));
+    onSnapshot(q, (snapshot) => {
+      let filteredRecipes = [];
+
+      snapshot.docs.forEach((doc) => {
+          // books.push({ ...doc.data(), id: doc.id });
+        if (doc.data().title.includes(search) || doc.data().ingredients.includes(search)) {
+          filteredRecipes.push(doc.data());
+        }
+      })
+      setSearchedRecipes(filteredRecipes);
+    })
+  }
+
   return (
     <div>
       <div className='HeaderItems'>
@@ -147,14 +171,14 @@ function Dashboard() {
             <button className='DashboardButton' onClick={logOut}>Logout</button>
           </ul>
           <div class="search-container">
-            <input type="text" placeholder="Find Recipes" class="search-bar"></input>
+            <input type="text" placeholder="Find Recipes By Title or Ingredients" class="search-bar" onChange={(e) => {handleSearch(e)}}></input>
           </div>
         </div>
       </div>
       <main>
       <div className="content">
         {/* Render content based on user selection */}
-        {content === 'recipes' && <Recipes recipes={recipes} handleSave={handleSave} handleDelete={handleDelete} />}
+        {content === 'recipes' && <Recipes recipes={recipes} handleSave={handleSave} handleDelete={handleDelete} searching={searching} searchedRecipes={searchedRecipes}  />}
       </div>
       </main>
       {showModal && (
