@@ -1,28 +1,3 @@
-/* 
-<div>
-<h2>Dashboard</h2>
-<div className="sidemenu">
-  <ul>
-    <li>Profile</li>
-    <li>Recipes</li>
-    <li>Meal Plan</li>
-    <li>Settings</li>
-  </ul>
-</div>
-<div className="main-content">
-</div>
-<button>New Recipe</button>
-<div className="recipe-display">
-</div>
-<style>{`
-  .about-container {
-    display: none;
-  }
-`}</style>
-</div> 
-*/
-/* hide login and register button */
-
 @import url('https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,100..900;1,100..900&display=swap');
 
 .HeaderItems {
@@ -130,17 +105,36 @@
 }
 
 
-.main-content {
-  float: left;
-  width: 80%;
-  height: 100%;
-  padding: 20px;
+.about-container {
+  display: none;
 }
 
-.recipe-display {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+.modal {
+  position: fixed;
+  align-items: center;
+  margin-top: 10px;
 }
 
 
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  transition:all 0.3s ease;
+  font-size: 2em;
+}
+
+.close-modal:hover {
+  color: #fff;
+}

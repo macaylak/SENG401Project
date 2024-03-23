@@ -1,0 +1,250 @@
+/* colors */
+:root {
+    --primary-color: #43081b;
+    --secondary-color: #fff;
+    --tertiary-color: #007bff;
+}
+
+.recipe-form {
+    width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 40px;
+    background-color: var(--secondary-color); /* Utilize secondary color variable */
+}
+
+.recipe-form h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: var(--primary-color); /* Utilize primary color variable */
+}
+
+.recipe-form input {
+    border: solid 1px #ccc;
+    border-radius: 1rem;
+    padding: 1rem;
+    font-size: 1rem;
+    color: #000;
+    transition: 150ms cubic-bezier(0.4, 0, 0,2, 1);
+}
+
+label {
+    position: absolute;
+    left: 16px;
+    color: var(--primary-color);
+    pointer-events: none;
+    transform: translateY(1rem);
+    transition: 150ms cubic-bezier(0.4, 0, 0,2, 1);
+}
+
+.input-group {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 20px;
+    position: relative;
+    justify-content: space-evenly;
+}
+
+.input-group input {
+    width: 100%;
+}
+
+.recipe-form button { /*all buttons in the form */
+    padding: 10px 20px 10px 20px;
+    background-color: var(--primary-color); /* Utilize tertiary color variable */
+    color: var(--secondary-color); /* Utilize secondary color variable */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    align-content: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Add transition for smoother hover effect */
+}
+
+.recipe-form button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.submitButton {
+    margin-top: 20px;
+}
+
+.addButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+
+}
+
+.ingredient-list {
+    margin-top: 20px;
+    width: fit-content;
+}
+
+.ingredient-list p {
+    font-size: 20px;
+    margin: 10px;
+    color: var(--primary-color); /* Utilize primary color variable */
+    padding: auto;
+}
+
+.ingredient-list ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    
+}
+
+.ingredient-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+}
+
+.ingredient-list button { /* X button */
+    padding: 5px 10px;
+    font-size: 1rem;
+    width: 30px;
+    border: none;
+    background: none;
+    color: var(--primary-color); /* Utilize secondary color variable */
+    border-radius: 5px;
+}
+
+.ingredient-list button:hover {
+    color: var(--tertiary-color); /* Utilize tertiary color variable */
+    cursor: pointer;
+}   
+
+.cuisine-list {
+    margin-top: 20px;
+    width: fit-content;
+}
+
+.cuisine-list p {
+    font-size: 20px;
+    margin: 10px;
+    color: var(--primary-color); /* Utilize primary color variable */
+    padding: auto;
+}
+
+.cuisine-list ul {
+    list-style-type: none;
+}
+
+.cuisine-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+}
+
+.cuisine-list button {
+    padding: 5px 10px;
+    font-size: 1rem;
+    width: 30px;
+    border: none;
+    background: none;
+    color: var(--primary-color); /* Utilize secondary color variable */
+    border-radius: 5px;
+}
+
+.cuisine-list button:hover {
+    color: var(--tertiary-color); /* Utilize tertiary color variable */
+    cursor: pointer;
+}
+
+.diet-list {
+    margin-top: 20px;
+    width: fit-content;
+}
+
+.diet-list p {
+    font-size: 20px;
+    margin: 10px;
+    color: var(--primary-color); /* Utilize primary color variable */
+    padding: auto;
+}
+
+.diet-list ul {
+    list-style-type: none;
+}
+
+.diet-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+}
+
+.diet-list button {
+    padding: 5px 10px;
+    font-size: 1rem;
+    width: 30px;
+    border: none;
+    background: none;
+    color: var(--primary-color); /* Utilize secondary color variable */
+    border-radius: 5px;
+}
+
+.diet-list button:hover {
+    color: var(--tertiary-color); /* Utilize tertiary color variable */
+    cursor: pointer;
+}
+
+.allergy-list {
+    margin-top: 20px;
+    width: fit-content;
+}
+
+.allergy-list p {
+    font-size: 20px;
+    margin: 10px;
+    color: var(--primary-color); /* Utilize primary color variable */
+    padding: auto;
+}
+
+.allergy-list ul {
+    list-style-type: none;
+}
+
+.allergy-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+}
+
+.allergy-list button {
+    padding: 5px 10px;
+    font-size: 1rem;
+    width: 30px;
+    border: none;
+    background: none;
+    color: var(--primary-color); /* Utilize secondary color variable */
+    border-radius: 5px;
+}
+
+.allergy-list button:hover {
+    color: var(--tertiary-color); /* Utilize tertiary color variable */
+    cursor: pointer;
+}
