@@ -40,13 +40,14 @@ function RecipeCard({ recipe, handleSave, handleDelete }) {
   };
 
   const handleDeleteRecipe = () => {
-    handleDelete();
+    handleDelete(recipe); // Pass the recipe object to the handleDelete function
     // Remove the recipe title from localStorage
     const savedRecipes = JSON.parse(localStorage.getItem('savedRecipes')) || [];
     const updatedRecipes = savedRecipes.filter(savedRecipe => savedRecipe.title !== title);
     localStorage.setItem('savedRecipes', JSON.stringify(updatedRecipes));
     setIsSaved(false);
   };
+  
 
   return (
     <>

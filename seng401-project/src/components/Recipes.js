@@ -33,7 +33,7 @@ const Recipes = ({ recipes, handleSave, handleDelete, recipesPerRow }) => {
             key={recipe.id}
             recipe={recipe}
             handleSave={() => handleSave(recipe)}
-            handleDelete={() => handleDelete(recipe.id)}
+            handleDelete={() => handleDelete(recipe)}
           />
         ))}
       </div>
