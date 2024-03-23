@@ -1,38 +1,11 @@
 // RecipeCard.js
 import React, { useState } from 'react';
+import { FaCheck, FaTrash } from 'react-icons/fa';
 import './styles/RecipeCard.css';
 
 function RecipeCard({ recipe, handleSave, handleDelete }) {
   const { title, ingredients, instructions, prepTime, nutritionalFacts } = recipe;
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const titleStyle = {
-    color: 'pink',
-    fontSize: '20px',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  };
-
-  const ingredientStyle = {
-    color: 'blue',
-    fontSize: '16px',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  };
-
-  const prepTimeStyle = {
-    fontSize: '16px',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  };
-
-  const instructionsStyle = {
-    color: 'purple',
-    fontSize: '16px',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  };
-
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
@@ -54,7 +27,7 @@ function RecipeCard({ recipe, handleSave, handleDelete }) {
           <div className='flip-card-back'>
             <div className='content'>
               <ul>
-                <li className="prep-time" style={prepTimeStyle}>{prepTime}</li>
+                <li className="prep-time">{prepTime}</li>
                 <li className="ingredients">{ingredients}</li>
                 <li className="nutritional-facts">{nutritionalFacts}</li>
               </ul>
@@ -74,8 +47,8 @@ function RecipeCard({ recipe, handleSave, handleDelete }) {
               <li>{nutritionalFacts}</li>
               </ul>
             <div className="modal-buttons">
-              <button onClick={handleSave}>Save Recipe</button>
-              <button onClick={handleDelete}>Delete Recipe</button>
+              <button onClick={handleSave}><FaCheck/></button>
+              <button onClick={handleDelete}><FaTrash/></button>
             </div>
           </div>
         </div>

@@ -126,14 +126,13 @@
 
 .modal-buttons {
   display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
+  flex-direction: row;
+  float: right;
 }
 
 .modal button {
-  background-color: #130e41;
-  color: white;
+  background: none;
+  color: #888;
   border: none;
   padding: 10px 20px;
   font-size: 1rem;
@@ -141,11 +140,12 @@
   margin: 10px 0;
   transition: all 0.3s ease;
   border-radius: 30px;
-  width: 200px;
+  width: 100px;
+  position: relative;
 }
 
 .modal button:hover {
-  background-color: rgb(30, 95, 130);
+  color: #130e41;
 }
 
 .close {

@@ -10,10 +10,6 @@ const Recipes = ({ recipes, handleSave, handleDelete, recipesPerRow }) => {
   const [searchQuery] = useState('');
   const [isGridView, setIsGridView] = useState(true);
 
-  // const handleSearch = (event) => {
-  //   setSearchQuery(event.target.value);
-  // };
-
   const toggleView = () => {
     setIsGridView(prevState => !prevState);
   }

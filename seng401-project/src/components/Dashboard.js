@@ -98,8 +98,6 @@ function Dashboard() {
     setShowModal(false); // Close modal after submitting
   };
 
-
-
   const handleSave = async (recipe_dict) => {
     const querySnapshot = await getDocs(query(colRef, where("title", "==", recipe_dict.title)));
     if (!querySnapshot.empty) {
