@@ -74,16 +74,17 @@ function Dashboard() {
   // Function to handle submitting a new recipe
   const handleSubmitNewRecipe = async (input) => {
     if (!input.ingredients.trim()) return;
+    console.log("input", input);
 
     try {
       const response = await axios.post(
         'https://us-central1-pro-5d7e4.cloudfunctions.net/generateRecipes',
-        { prompt: input.ingredients }
+        { ingredients: input.ingredients, cuisine: input.cuisine, diet: input.diet, allergy: input.allergy}
       );
 
       if (response.status === 200) {
         var recipeDict = response.data;
-        if (recipeDict.title !== 'Recipe cannot be generated') {
+        if (!recipeDict.title.includes('recipe cannot be generated')) {
           recipeDict.ingredientsAvailable = input.ingredients;
           recipeDict.user = auth.currentUser.email;
 
