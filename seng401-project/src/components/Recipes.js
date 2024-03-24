@@ -32,11 +32,7 @@ const Recipes = ({ recipes, handleSave, handleDelete, recipesPerRow, searching, 
     </div>
     <div className="recipe-list">
       <div className={`recipe-grid ${isGridView ? `recipes-per-row-${recipesPerRow}` : 'recipe-list-view'}`}>
-// <<<<<<< Rimal's-Branch
-//         {(searching? searchedRecipes : recipes).map((recipe) => (
-
-        {filteredRecipes.map((recipe) => (
-
+        {(searching? searchedRecipes : recipes).map((recipe) => (
           <RecipeCard
             key={recipe.id}
             recipe={recipe}
@@ -47,15 +43,13 @@ const Recipes = ({ recipes, handleSave, handleDelete, recipesPerRow, searching, 
 
           />
         ))}
-      </div>
+       </div>
     </div>
   </div>
 
   );
 };
 
-
-export default Recipes;
 
 export default Recipes;
 
