@@ -6,7 +6,9 @@ import { FaList } from 'react-icons/fa';
 // import grid icon
 import { FaTh } from 'react-icons/fa';
 
+
 const Recipes = ({ recipes, handleSave, handleDelete, recipesPerRow, searching, searchedRecipes, handleRegenerate }) => {
+
   const [searchQuery] = useState('');
   const [isGridView, setIsGridView] = useState(true);
 
@@ -21,20 +23,28 @@ const Recipes = ({ recipes, handleSave, handleDelete, recipesPerRow, searching, 
   return (
   <div id="recipes">
     <div className='title'>
+
       <h2>Your Recipes</h2>
+
       <div className="view-toggle">
         <button onClick={toggleView}>{isGridView ? <FaList /> : <FaTh />}</button>
       </div>
     </div>
     <div className="recipe-list">
       <div className={`recipe-grid ${isGridView ? `recipes-per-row-${recipesPerRow}` : 'recipe-list-view'}`}>
-        {(searching? searchedRecipes : recipes).map((recipe) => (
+// <<<<<<< Rimal's-Branch
+//         {(searching? searchedRecipes : recipes).map((recipe) => (
+
+        {filteredRecipes.map((recipe) => (
+
           <RecipeCard
             key={recipe.id}
             recipe={recipe}
             handleSave={() => handleSave(recipe)}
+
             handleDelete={() => handleDelete(recipe)}
             handleRegenerate={() => handleRegenerate(recipe)}
+
           />
         ))}
       </div>
@@ -44,4 +54,8 @@ const Recipes = ({ recipes, handleSave, handleDelete, recipesPerRow, searching, 
   );
 };
 
+
 export default Recipes;
+
+export default Recipes;
+

@@ -24,7 +24,9 @@
     transition: 150ms cubic-bezier(0.4, 0, 0,2, 1);
 }
 
-label {
+
+.grandpa label {
+
     position: absolute;
     left: 16px;
     color: var(--primary-color);
@@ -110,6 +112,9 @@ label {
     position: relative;
     overflow: auto;
     flex: autos;
+
+
+
     p {
         font-size: 20px;
     }
@@ -135,7 +140,10 @@ label {
         font-size: 1rem;
     }
 
-    button { /* X button */
+
+
+    button { 
+
         padding: 5px 10px;
         font-size: 1rem;
         width: 30px;
@@ -178,16 +186,20 @@ label {
 
     li span {
         font-size: 1rem;
-    }
 
-    button { /* X button */
+    } 
+
+    button { 
+
         padding: 5px 10px;
         font-size: 1rem;
         width: 30px;
         border: none;
         background: none;
         border-radius: 5px;
-    }
+
+    } 
+
 
     button:hover {
         cursor: pointer;
@@ -201,7 +213,10 @@ label {
     position: relative;
     overflow: auto;
     flex: autos;
-    p {
+
+
+     p {
+
         font-size: 20px;
     }
 
@@ -226,7 +241,9 @@ label {
         font-size: 1rem;
     }
 
-    button { /* X button */
+
+    button { 
+
         padding: 5px 10px;
         font-size: 1rem;
         width: 30px;
@@ -237,8 +254,9 @@ label {
 
     button:hover {
         cursor: pointer;
-    }   
-    
+
+    }    
+
 }
 
 .allergy-list {
@@ -247,7 +265,10 @@ label {
     position: relative;
     overflow: auto;
     flex: autos;
-    p {
+
+
+     p {
+
         font-size: 20px;
     }
 
@@ -272,7 +293,9 @@ label {
         font-size: 1rem;
     }
 
-    button { /* X button */
+
+    button { 
+
         padding: 5px 10px;
         font-size: 1rem;
         width: 30px;
@@ -284,5 +307,7 @@ label {
     button:hover {
         cursor: pointer;
     }   
-    
+
+     
+
 }
