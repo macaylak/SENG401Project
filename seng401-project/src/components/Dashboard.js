@@ -18,6 +18,7 @@ function Dashboard() {
   const [content, setContent] = useState('recipes');
   const [searchedRecipes, setSearchedRecipes] = useState([]); // Array to store searched recipes
   const [searching, setSearching] = useState(false); // Boolean to check if user is searching
+  const [regenRecipe, setRegenRecipe] = useState(false);
   var count = 0;
 
   useEffect(() => {
@@ -81,7 +82,7 @@ function Dashboard() {
 
 
   // Function to handle submitting a new recipe
-  const handleSubmitNewRecipe = async (input) => {
+  const handleSubmitNewRecipe = async (input, regenerate=false, oldRecipe=null) => {
     if (!input.ingredients.trim()) return;
     console.log("input", input);
 
@@ -94,10 +95,38 @@ function Dashboard() {
       if (response.status === 200) {
         var recipeDict = response.data;
         if (!recipeDict.title.includes('recipe cannot be generated')) {
-          recipeDict.ingredientsAvailable = input.ingredients;
-          recipeDict.user = auth.currentUser.email;
-
-          setRecipes([recipeDict, ...recipes]);
+          if(!regenerate) {
+            recipeDict.ingredientsAvailable = input.ingredients;
+            recipeDict.user = auth.currentUser.email;
+            if(input.cuisine !== '') {
+              recipeDict.cuisine = input.cuisine;
+            }
+            if(input.diet !== '') {
+              recipeDict.diet = input.diet;
+            }
+            if(input.allergy !== '') {
+              recipeDict.allergy = input.allergy;
+            }
+            setRecipes([recipeDict, ...recipes]);
+          }
+          else {
+            // setRecipes((recipes.filter((r) => r.title !== oldRecipe.title)));
+            var oldTitle = oldRecipe.title;
+            oldRecipe.title = recipeDict.title;
+            oldRecipe.ingredients = recipeDict.ingredients;
+            oldRecipe.instructions = recipeDict.instructions;
+            oldRecipe.prepTime = recipeDict.prepTime;
+            oldRecipe.nutritionalFacts = recipeDict.nutritionalFacts;
+            setRecipes(() => {
+              return recipes.map((recipe) => {
+                if (recipe.title === oldTitle) {
+                  return oldRecipe;
+                }
+                return recipe;
+              });
+            });
+            console.log("recipes", recipes) 
+          }
         } else {
           alert(recipeDict.title);
         }
@@ -166,7 +195,18 @@ function Dashboard() {
   }
 
   const handleRegenerate = async (recipe) => {
+    setRegenRecipe(true);
     console.log("hello", recipe)
+    var input = {ingredients: recipe.ingredientsAvailable}
+    input.cuisine = recipe.cuisine? recipe.cuisine : '';
+    input.diet = recipe.diet? recipe.diet : '';
+    input.allergy = recipe.allergy? recipe.allergy : '';
+
+    await handleSubmitNewRecipe(input, true, recipe);
+    setRegenRecipe(false);
+    console.log("recipes", recipes)
+
+    // handleDelete(recipe);
     // save things like cuisine, diet, allergy, then regenerate
   }
 

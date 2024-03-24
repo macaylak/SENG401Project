@@ -5,9 +5,9 @@ import './styles/RecipeCard.css';
 function RecipeCard({ recipe, handleSave, handleDelete, handleRegenerate }) {
   const { title, ingredients, instructions, prepTime, nutritionalFacts } = recipe;
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isSaveLoading, setIsSaveLoading] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
-  
+  const [isRegenLoading, setIsRegenLoading] = useState(false);
   
   // recipesection = {name, content}
 
@@ -35,9 +35,9 @@ function RecipeCard({ recipe, handleSave, handleDelete, handleRegenerate }) {
   };
 
   const handleSaveRecipe = async () => {
-    setIsLoading(true);
+    setIsSaveLoading(true);
     await handleSave();
-    setIsLoading(false);
+    setIsSaveLoading(false);
     setIsSaved(true);
     // Save the recipe title to localStorage
     const savedRecipes = JSON.parse(localStorage.getItem('savedRecipes')) || [];
@@ -53,6 +53,13 @@ function RecipeCard({ recipe, handleSave, handleDelete, handleRegenerate }) {
 
   
   };
+
+  const handleRegenerateClick = async () => {
+    setIsRegenLoading(true);
+    await handleRegenerate();
+    // handleDeleteRecipe();
+    setIsRegenLoading(false);
+  }
   
 
   return (
@@ -136,11 +143,12 @@ function RecipeCard({ recipe, handleSave, handleDelete, handleRegenerate }) {
                 <p>Saved!</p>
               ) : (
                 <>
-                  <button disabled={isLoading} onClick={handleRegenerate}>
-                    Remake <FaRedo/>
+                  <button disabled={isRegenLoading} onClick={handleRegenerateClick}>
+                    {/* Regenerate <FaRedo/> */}
+                    <FaRedo/>{isRegenLoading ? 'Cooking...' : 'Regenerate'}
                   </button>
-                  <button onClick={handleSaveRecipe} disabled={isLoading}>
-                    <FaCheck/> {isLoading ? 'Saving...' : 'Save'}
+                  <button onClick={handleSaveRecipe} disabled={isSaveLoading}>
+                    <FaCheck/> {isSaveLoading ? 'Saving...' : 'Save'}
                   </button>
                 </>
               )}
