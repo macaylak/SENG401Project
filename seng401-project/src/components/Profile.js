@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { auth } from '../firebase';
+import { auth, colRef } from '../firebase';
 import './styles/Profile.css';
 import { updatePassword, updateEmail, reauthenticateWithCredential, EmailAuthProvider, signOut } from "firebase/auth";
 import ProfileController from './controllers/ProfileController';
 import { useNavigate } from 'react-router-dom';
+import { getDocs, query, where, updateDoc } from 'firebase/firestore';
 
 const Profile = () => {
   const [password, setPassword] = useState('');
@@ -41,17 +42,6 @@ const Profile = () => {
     });
   };
 
-  const logOut = () => {
-    signOut(auth)
-      .then(() => {
-        console.log("user signed out");
-        navigate('/login');
-      })
-      .catch((err) => {
-        console.error(err.message);
-      })
-  }
-
   const handleEmailChange = (e) => {
     e.preventDefault();
     if (e.target.email[0].value !== auth.currentUser.email) {
@@ -64,16 +54,19 @@ const Profile = () => {
     }
     updateEmail(auth.currentUser, e.target.email[1].value).then(() => {
       alert('Email updated!');
+      changeRecipeUser(e.target.email[0].value, e.target.email[1].value);
       logOut();
-      // e.target.email[0].value = '';
-      // e.target.email[1].value = '';
-      // e.target.email[2].value = '';
-      // e.target.password.value = '';
     })
     .catch((error) => {
       const errorMessage = error.message;
-      if (errorMessage === 'auth/requires-recent-login') {
-        reauthenticateWithCredential(auth.currentUser, e.target.password.value)
+
+      if (errorMessage.includes('auth/requires-recent-login')) {
+        const credential = EmailAuthProvider.credential(
+          auth.currentUser.email,
+          e.target.password.value
+        );
+
+        reauthenticateWithCredential(auth.currentUser, credential)
         .then(() => {
           updateEmail(auth.currentUser, e.target.email[1].value)
           .catch((error) => {
@@ -89,6 +82,31 @@ const Profile = () => {
     });
   }
 
+  const logOut = () => {
+    signOut(auth)
+      .then(() => {
+        console.log("user signed out");
+        navigate('/login');
+      })
+      .catch((err) => {
+        console.error(err.message);
+      })
+  }
+
+  const changeRecipeUser = (oldEmail, newEmail) => {
+    console.log('Changing user email from ' + oldEmail + ' to ' + newEmail);
+    const q = query(colRef, where("user", "==", oldEmail));
+    getDocs(q)
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          console.log(doc.data().title);
+          updateDoc(doc.ref, { user: newEmail });
+        });
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }
 
   const handlePasswordButtonClick = () => {
     setChangePasswordForm(true);
