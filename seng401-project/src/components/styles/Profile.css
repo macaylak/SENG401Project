@@ -1,15 +1,22 @@
 /* styles/Profile.css */
 
-.PH {
-    color: #130e41;
-    margin-top: 35px;
-}
 
 .profile-container {
     display: flex;
-    align-items: center; /* Vertically center the content */
-    justify-content: center; /* Horizontally center the content */
-    height: 100vh; /* Make the container full viewport height */
+    justify-content: space-between;
+}
+
+.main-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.PH {
+    color: #130e41;
+    margin-top: 45px;
+    margin-bottom: 0px;
 }
 
 .sidebar {
@@ -20,6 +27,7 @@
     flex-direction: column;
     justify-content: center; /* Center items vertically */
     align-items: center; /* Center items horizontally */
+    text-align: right;
 }
 
 .sidebar button {
@@ -41,14 +49,13 @@
 
 .centered-form {
     max-width: 450px;
-    margin: 0 auto;
+    margin-top:9%;
     border-radius: 35px; /* Rounded border */
     border: 1px solid #ccc; /* Add border */
     padding: 20px; /* Add some padding */
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 12%;
 }
 
 .centered-form label {
@@ -91,9 +98,5 @@
     color: #8bc2e4; /* Change text color on hover */
     border: 2px solid #8bc2e4; /* Add a border */
   
-}
-
-.main-content {
-    padding-top: 70px;
 }
 

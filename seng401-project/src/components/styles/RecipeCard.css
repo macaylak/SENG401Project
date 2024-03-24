@@ -1,171 +1,171 @@
 /* RecipeCard.css */
 
+.flip-card {
+  background-color: transparent;
+  width: 300px;
+  height: fit-content;
+  perspective: 1000px;
+  cursor: pointer;
+  overflow: hidden;
+}
 
-  .flip-card {
-    background-color: transparent;
-    width: 300px;
-    height: fit-content;
-    perspective: 1000px;
-    cursor: pointer;
-  }
+.flip-card-inner {
+  position: relative;
+  width: 300px;
+  height: 400px;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* delay after hover */
+.flip-card:hover .flip-card-inner {
+  transition-delay: 0.3s;
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.flip-card-front {
+  background-image:
+    linear-gradient(
+      45deg, #7cadd3, #d2d3d5
+    );
+}
+
+.flip-card-front h3 {
+  color: #130e41;
+  font-size: 1.5rem;
+  margin: 20px 0;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  text-transform: uppercase;
   
-  .flip-card-inner {
-    position: relative;
-    width: 300px;
-    height: 400px;
-    text-align: center;
-    transition: transform 0.6s;
-    transform-style: preserve-3d;
-  }
-  
-  .flip-card:hover .flip-card-inner {
-    transform: rotateY(180deg);
-  }
-  
-  /* delay after hover */
-  .flip-card:hover .flip-card-inner {
-    transition-delay: 0.3s;
-  }
-  
-  .flip-card-front,
-  .flip-card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  }
-  
-  .flip-card-front {
-    background-image:
-      linear-gradient(
-        45deg, #7cadd3, #d2d3d5
-      );
-  }
-  
-  .flip-card-front h3 {
-    color: #130e41;
-    font-size: 1.5rem;
-    margin: 20px 0;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100px;
-    text-transform: uppercase;
-    
-  }
-  
-  .flip-card-back {
-    background-image: 
-      linear-gradient(
-        315deg, #7cadd3, #d2d3d5
-      );
-    transform: rotateY(180deg);
-    text-align: justify;
-    color: #130e41;
-    display: flex;
-  }
-  
-  .flip-card ul {
-    list-style-type: none;
-    padding: 10px;
-    text-transform: capitalize;
-    margin-bottom: 10px;
-  }
-  
-  .flip-card li {
-    padding: 10px;
-    border-bottom: 1px solid #aaa;
-  }
-  
-  
-  .modal {
-    display: block;
-    position: fixed;
-    z-index: 1000;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    overflow: hidden;
-    margin-bottom: 10px;
-  }
-  
-  .modal-content {
-    background-image: 
-      linear-gradient(
-        315deg, #7cadd3, #d2d3d5
-      );
-    margin: 30px auto;
-    padding: 20px;
-    border: 1px solid #888;
-    border-radius: 25px;
-    width: 80%;
-    max-width: 600px;
-    height: 80%;
-    overflow: scroll;
-  }
-  
-  .modal-content ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .modal-content li {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    border-bottom: 1px solid #aaa;
-    text-wrap: wrap;
-  }
-  
-  .modal-content h2 {
-    color: #130e41;
-    font-size: 2.5rem;
-    margin: 30px 0;
-  }
-  
-  .modal-buttons {
-    display: flex;
-    flex-direction: row;
-    float: right;
-  }
-  
-  .modal button {
-    background: none;
-    color: #888;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1rem;
-    cursor: pointer;
-    margin: 10px 0;
-    transition: all 0.3s ease;
-    border-radius: 30px;
-    width: 100px;
-    position: relative;
-  }
-  
-  .modal button:hover {
-    color: #130e41;
-  }
-  
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    transition: all 0.3s ease;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  
-  button {
-    cursor: pointer;
-  }
+}
+
+.flip-card-back {
+  background-image: 
+    linear-gradient(
+      315deg, #7cadd3, #d2d3d5
+    );
+  transform: rotateY(180deg);
+  text-align: justify;
+  color: #130e41;
+  display: flex;
+}
+
+.flip-card ul {
+  list-style-type: none;
+  padding: 10px;
+  text-transform: capitalize;
+  margin-bottom: 10px;
+}
+
+.flip-card li {
+  padding: 10px;
+  border-bottom: 1px solid #aaa;
+}
+
+
+.modal {
+  display: block;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.modal-content {
+  background-image: 
+    linear-gradient(
+      315deg, #7cadd3, #d2d3d5
+    );
+  margin: 30px auto;
+  padding: 20px;
+  border: 1px solid #888;
+  border-radius: 25px;
+  width: 80%;
+  max-width: 600px;
+  height: 80%;
+  overflow: scroll;
+}
+
+.modal-content ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.modal-content li {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-bottom: 1px solid #aaa;
+  text-wrap: wrap;
+}
+
+.modal-content h2 {
+  color: #130e41;
+  font-size: 2.5rem;
+  margin: 30px 0;
+}
+
+.modal-buttons {
+  display: flex;
+  flex-direction: row;
+  float: right;
+}
+
+.modal button {
+  background: none;
+  color: #888;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin: 10px 0;
+  transition: all 0.3s ease;
+  border-radius: 30px;
+  width: 100px;
+  position: relative;
+}
+
+.modal button:hover {
+  color: #130e41;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+button {
+  cursor: pointer;
+}
