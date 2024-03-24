@@ -24,7 +24,9 @@
     transition: 150ms cubic-bezier(0.4, 0, 0,2, 1);
 }
 
+
 .grandpa label {
+
     position: absolute;
     left: 16px;
     color: var(--primary-color);
@@ -112,6 +114,7 @@
     flex: autos;
 
 
+
     p {
         font-size: 20px;
     }
@@ -137,7 +140,10 @@
         font-size: 1rem;
     }
 
+
+
     button { 
+
         padding: 5px 10px;
         font-size: 1rem;
         width: 30px;
@@ -180,16 +186,20 @@
 
     li span {
         font-size: 1rem;
+
     } 
 
     button { 
+
         padding: 5px 10px;
         font-size: 1rem;
         width: 30px;
         border: none;
         background: none;
         border-radius: 5px;
+
     } 
+
 
     button:hover {
         cursor: pointer;
@@ -206,6 +216,7 @@
 
 
      p {
+
         font-size: 20px;
     }
 
@@ -230,7 +241,9 @@
         font-size: 1rem;
     }
 
+
     button { 
+
         padding: 5px 10px;
         font-size: 1rem;
         width: 30px;
@@ -241,7 +254,9 @@
 
     button:hover {
         cursor: pointer;
+
     }    
+
 }
 
 .allergy-list {
@@ -251,7 +266,9 @@
     overflow: auto;
     flex: autos;
 
+
      p {
+
         font-size: 20px;
     }
 
@@ -276,7 +293,9 @@
         font-size: 1rem;
     }
 
+
     button { 
+
         padding: 5px 10px;
         font-size: 1rem;
         width: 30px;
@@ -288,5 +307,7 @@
     button:hover {
         cursor: pointer;
     }   
+
      
+
 }
