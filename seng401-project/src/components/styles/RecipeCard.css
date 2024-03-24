@@ -62,9 +62,7 @@
       315deg, #7cadd3, #d2d3d5
     );
   transform: rotateY(180deg);
-  text-align: justify;
   color: #130e41;
-  display: flex;
 }
 
 .flip-card ul {
