@@ -165,12 +165,24 @@ function Dashboard() {
   }
 
   const handleDelete = (recipe) => {
-    if (recipe.id) {
-      deleteRecipe(recipe.id);
-      setRecipes(recipes.filter((r) => r.id !== recipe.id));
-    } else {
+    var id = '';
+    getDocs(query(colRef, where("title", "==", recipe.title)))
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        console.log(doc.id);
+        console.log(doc.data());  
+        id = doc.id;
+      });
+
+      if(id !== '') {
+        deleteRecipe(id);
+      }
       setRecipes(recipes.filter((r) => r.title !== recipe.title));
-    }
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+    console.log("id", id);
   }
 
   const handleSearch = (e) => {
