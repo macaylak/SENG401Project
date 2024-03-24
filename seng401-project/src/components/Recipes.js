@@ -22,13 +22,9 @@ const Recipes = ({ recipes, handleSave, handleDelete, recipesPerRow, searching, 
 
   return (
   <div id="recipes">
-    <div className='title'>
-
-      <h2>Your Recipes</h2>
-
+   
       <div className="view-toggle">
         <button onClick={toggleView}>{isGridView ? <FaList /> : <FaTh />}</button>
-      </div>
     </div>
     <div className="recipe-list">
       <div className={`recipe-grid ${isGridView ? `recipes-per-row-${recipesPerRow}` : 'recipe-list-view'}`}>

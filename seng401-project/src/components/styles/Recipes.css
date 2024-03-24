@@ -9,31 +9,9 @@
     justify-content: space-between;
   }
   
-  .title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 20px;
-  }
-  
-  .title h2 {
-    color: #130e41;
-    font-size: 2.5rem;
-  }
-  
-  .title button {
-    background-color: #130e41;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-  }
-  
-  
-  
   .view-toggle {
-    display: flex;
+    position: relative;
+    text-align: right; /* Align the content to the right */
   }
   
   .view-toggle button {
@@ -42,6 +20,7 @@
     color: #130e41;
     font-size: 30px;
     cursor: pointer;
+    margin-bottom: 25px;
   }
   
   .view-toggle button:hover {
