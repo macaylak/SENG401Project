@@ -1,26 +1,56 @@
 import React, { useState } from 'react';
 import { auth } from '../firebase';
 import './styles/Profile.css';
-import { updatePassword, updateEmail, reauthenticateWithCredential } from "firebase/auth";
+import { updatePassword, updateEmail, reauthenticateWithCredential, EmailAuthProvider, signOut } from "firebase/auth";
 import ProfileController from './controllers/ProfileController';
+import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
   const [password, setPassword] = useState('');
   const [emailForm, setEmailForm] = useState(false);
   const [changePasswordForm, setChangePasswordForm] = useState(false);
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
 
-  const handlePasswordChange = () => {
-    ProfileController.resetPassword(
+  const handlePasswordChange = (e) => {
+    e.preventDefault();
+    const credential = EmailAuthProvider.credential(
       auth.currentUser.email,
-      (message) => alert(message),
-      (error) => {
-        console.log(error.code, error.message);
-        setError(error.message);
+      e.target.password[0].value
+     );
+    reauthenticateWithCredential(auth.currentUser, credential)
+    .then(() => {
+      if (e.target.password[1].value !== e.target.password[2].value) {
+        alert('New passwords do not match');
+        return;
       }
-    );
+      updatePassword(auth.currentUser, e.target.password[1].value).then(() => {
+        alert('Password updated!');
+        logOut();
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        // alert(errorMessage);
+        console.log(errorMessage);
+      });
+    })
+    .catch((error) => {
+      const errorMessage = error.message;
+      alert(errorMessage);
+    });
   };
+
+  const logOut = () => {
+    signOut(auth)
+      .then(() => {
+        console.log("user signed out");
+        navigate('/login');
+      })
+      .catch((err) => {
+        console.error(err.message);
+      })
+  }
 
   const handleEmailChange = (e) => {
     e.preventDefault();
@@ -28,11 +58,17 @@ const Profile = () => {
       alert('Current email is incorrect');
       return;
     }
+    if (e.target.email[1].value !== e.target.email[2].value) {
+      alert('New emails do not match');
+      return;
+    }
     updateEmail(auth.currentUser, e.target.email[1].value).then(() => {
       alert('Email updated!');
-      e.target.email[0].value = '';
-      e.target.email[1].value = '';
-      e.target.password.value = '';
+      logOut();
+      // e.target.email[0].value = '';
+      // e.target.email[1].value = '';
+      // e.target.email[2].value = '';
+      // e.target.password.value = '';
     })
     .catch((error) => {
       const errorMessage = error.message;
@@ -87,6 +123,12 @@ const Profile = () => {
             <label>
               <input type="password" placeholder='Current Password' name="password" />
             </label>
+            <label>
+              <input type="password" placeholder='New Password' name="password" />
+            </label>
+            <label>
+              <input type="password" placeholder='Re-enter New Password' name="password" />
+            </label>
             <input type="submit" value="Reset Password"  />
           </form>
         }
@@ -99,6 +141,9 @@ const Profile = () => {
             </label>
             <label>
               <input type="email" placeholder='New Email' name="email" />
+            </label>
+            <label>
+              <input type="email" placeholder='Re-enter New Email' name="email" />
             </label>
             <label>
               <input type="password" placeholder = 'Enter password to confirm changes' name="password" />
