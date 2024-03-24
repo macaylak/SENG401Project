@@ -1,28 +1,3 @@
-/* 
-<div>
-<h2>Dashboard</h2>
-<div className="sidemenu">
-  <ul>
-    <li>Profile</li>
-    <li>Recipes</li>
-    <li>Meal Plan</li>
-    <li>Settings</li>
-  </ul>
-</div>
-<div className="main-content">
-</div>
-<button>New Recipe</button>
-<div className="recipe-display">
-</div>
-<style>{`
-  .about-container {
-    display: none;
-  }
-`}</style>
-</div> 
-*/
-/* hide login and register button */
-
 @import url('https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,100..900;1,100..900&display=swap');
 
 .HeaderItems {
@@ -31,18 +6,25 @@
   background-position: 92% 17%; /* Position the image on the right side */
 }
 
+.menu {
+  display: flex;
+  justify-content: space-around; /* Aligns items to both ends of the container */
+  align-items: center;
+  flex-direction: row;
+}
+
 .menu ul button {
+  background: none;
   border: none;
-  background: none;
-  cursor: pointer;
-  color: #050f34;
-  text-decoration: none;
+  color: #130e41; /* Default color */
+  font-size: 1.2rem;
+  text-transform: uppercase;
   position: relative;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  letter-spacing: 0.5px;
-  border:none;
-  background: none;
-  font-size: medium;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+  height: auto;
+
 }
 
 .menu ul button:hover {
@@ -130,18 +112,23 @@
 }
 
 
-.main-content {
-  float: left;
-  width: 80%;
-  height: 100%;
-  padding: 20px;
+.about-container {
+  display: none;
 }
 
-.recipe-display {
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
+
 
 .modal-overlay {
   position: fixed;
@@ -167,4 +154,6 @@
   font-size: 24px;
   color: #fff;
   cursor: pointer;
+
 }
+

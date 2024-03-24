@@ -1,20 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import { FaCheck, FaTrash } from 'react-icons/fa';
+import { FaCheck, FaTrash, FaRedo } from 'react-icons/fa';
 import './styles/RecipeCard.css';
 
-function RecipeCard({ recipe, handleSave, handleDelete }) {
+function RecipeCard({ recipe, handleSave, handleDelete, handleRegenerate }) {
   const { title, ingredients, instructions, prepTime, nutritionalFacts } = recipe;
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isSaveLoading, setIsSaveLoading] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
-  
+  const [isRegenLoading, setIsRegenLoading] = useState(false);
   
   // recipesection = {name, content}
 
   const prepTimeList = prepTime.split('\n');
   const ingredientsList = ingredients.split('\n');
 
-
+  // useEffect(() => {
+  //   if(recipe.id) {
+  //     setIsSaved(true);
+  //     return;
+  //   }
+  // });
 
 
 
@@ -30,9 +35,9 @@ function RecipeCard({ recipe, handleSave, handleDelete }) {
   };
 
   const handleSaveRecipe = async () => {
-    setIsLoading(true);
+    setIsSaveLoading(true);
     await handleSave();
-    setIsLoading(false);
+    setIsSaveLoading(false);
     setIsSaved(true);
     // Save the recipe title to localStorage
     const savedRecipes = JSON.parse(localStorage.getItem('savedRecipes')) || [];
@@ -40,13 +45,22 @@ function RecipeCard({ recipe, handleSave, handleDelete }) {
   };
 
   const handleDeleteRecipe = () => {
-    handleDelete();
-    // Remove the recipe title from localStorage
+    handleDelete(); 
     const savedRecipes = JSON.parse(localStorage.getItem('savedRecipes')) || [];
     const updatedRecipes = savedRecipes.filter(savedRecipe => savedRecipe.title !== title);
     localStorage.setItem('savedRecipes', JSON.stringify(updatedRecipes));
     setIsSaved(false);
+
+  
   };
+
+  const handleRegenerateClick = async () => {
+    setIsRegenLoading(true);
+    await handleRegenerate();
+    // handleDeleteRecipe();
+    setIsRegenLoading(false);
+  }
+  
 
   return (
     <>
@@ -128,9 +142,15 @@ function RecipeCard({ recipe, handleSave, handleDelete }) {
               {isSaved ? (
                 <p>Saved!</p>
               ) : (
-                <button onClick={handleSaveRecipe} disabled={isLoading}>
-                  <FaCheck/> {isLoading ? 'Saving...' : 'Save'}
-                </button>
+                <>
+                  <button disabled={isRegenLoading} onClick={handleRegenerateClick}>
+                    {/* Regenerate <FaRedo/> */}
+                    <FaRedo/>{isRegenLoading ? 'Cooking...' : 'Regenerate'}
+                  </button>
+                  <button onClick={handleSaveRecipe} disabled={isSaveLoading}>
+                    <FaCheck/> {isSaveLoading ? 'Saving...' : 'Save'}
+                  </button>
+                </>
               )}
               <button onClick={handleDeleteRecipe}><FaTrash/></button>
             </div>

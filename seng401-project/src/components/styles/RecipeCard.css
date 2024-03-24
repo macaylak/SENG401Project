@@ -1,12 +1,12 @@
 /* RecipeCard.css */
 
-.flip-card {
+
+  .flip-card {
     background-color: transparent;
     width: 300px;
     height: fit-content;
     perspective: 1000px;
     cursor: pointer;
-    overflow: hidden;
   }
   
   .flip-card-inner {

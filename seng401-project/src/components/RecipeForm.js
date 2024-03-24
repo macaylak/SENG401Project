@@ -18,7 +18,9 @@ const InputWithButton = ({ name, value, onChange, onAdd, disabled }) => {
 
   return (
     <div className={`input-group ${focused ? 'focused' : ''}`}>
+   
       <label className = "grandpa">{name.charAt(0).toUpperCase() + name.slice(1)}</label>
+
       <input 
         name={name} 
         type="text" 

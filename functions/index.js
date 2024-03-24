@@ -5,33 +5,32 @@ const fetch = require("node-fetch");
 exports.generateRecipes = onRequest(async (req, res) => {
   try {
     const dict = req.body;
-    const ingredients = dict.prompt;
-    console.log("ingredients available:", ingredients)
-    const prompt = `You are a recipe generator, you are not allowed to generate anything that isn't a recipe.You are gonna strictly follow 2 principles
-    1: DO NOT GIVE RECIPES IF THE INGREDIENTS THAT THE USER INPUTS ARE NOT FOOD ITEMS YOU WILL SAY CANNOT GENERATE RECIPE BECAUSE THE INGREDIENTS ARE NOT FOOD ITEMS
-    2: ONLY USE THE ITEMS THAT YOU RECOGNIZE AS FOOD ITEMS TO GENERATE THE RECIPE.
-    . Here are the ingredients in my kitchen: [${ingredients}]. Give me a recipe that has a title, ingredients list, instructions, prep time, and nutritional facts in this exact order.`;
-    console.log("prompt:", prompt)
+    console.log("dict:", dict)
+    // const ingredients = dict.prompt;
+    const messages = createMessages(dict);
 
-    const response = await fetch('https://api.openai.com/v1/completions', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${functions.config().project.chat_gpt_secret}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        prompt: prompt,
-        model: "gpt-3.5-turbo-instruct",
-        max_tokens: 800
-      })
+    console.log("messages:", messages)
+
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${functions.config().project.chat_gpt_secret}`,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            messages: messages,
+            model: "gpt-3.5-turbo",
+            max_tokens: 800
+        })
     });
 
-    const jsonRes = await response.json();
-    var recipe = jsonRes.choices[0].text.trim();
-
+    const jsonRes = await response.json()
+    // console.log(jsonRes)
+    const recipe = await jsonRes.choices[0].message.content.trim()
     console.log(recipe.substring(0, 200) + "...");
 
     const recipe_dict = parseRecipe(recipe)
+    console.log(recipe_dict)
     // recipe = "test"
     // console.log(recipe);
 
@@ -47,16 +46,51 @@ exports.generateRecipes = onRequest(async (req, res) => {
   }
 });
 
+const createMessages = (dict) => {
+  var userPrompt = `You are a recipe generator and you are not allowed to generate anything that isn't a recipe. You must follow these principles.
+    1: DO NOT GENERATE RECIPES IF THE INGREDIENTS ARE NOT FOOD ITEMS.
+    2: ONLY USE THE ITEMS THAT YOU RECOGNIZE AS FOOD ITEMS TO GENERATE THE RECIPE.
+    3. TRY TO USE THE PREFERRED CUISINE, DIET, AND RESTRICTIONS TO GENERATE THE RECIPE. 
+    4. DO NOT USE INGREDIENTS THAT ARE NOT IN THE LIST.
+    5. RECIPES MAY USE AS LITTLE OR AS MANY INGREDIENTS AS NEEDED IN ORDER TO GENERATE A RECIPE.
+    6. RECIPES CAN PRODUCE ANY KIND OF DISH, INCLUDING MAIN COURSES, DESSERTS, SNACKS, SMOOTHIES, SOUPS, etc.
+    7. RECIPES DO NOT ALWAYS NEED A MAIN PROTEIN.
+    IF THESE PRINCIPLES ARE NOT FOLLOWED, RESPOND ONLY WITH "recipe cannot be generated: " followed by a short ACCURATE description(max 20 words) of the reason why(invalid ingredients, restrictions could not be met, etc.).`
+
+    userPrompt += `Here are the ingredients in my kitchen: [${dict.ingredients}].`
+    if(dict.cuisine !== "") {
+        userPrompt += " Preferred cuisine(optional): " + dict.cuisine + "."
+    }
+    if(dict.diet !== "") {
+        userPrompt += " Diet: " + dict.diet + "."
+    }
+    if(dict.allergy !== "") {
+        userPrompt += " Restrictions: " + dict.allergy + "."
+    }
+    // if(dict.not !== "") {
+    //     userPrompt += " Do not generate: " + dict.not + "."
+    // }
+
+    // Add error messages with reasons why the recipe cannot be generated such as invalid ingredients, restrictions could not be met, etc.
+    userPrompt += "Give me a recipe that has a title, ingredients list(with quantities), instructions, time(prep, cook, and total), and nutritional facts(with values) in this exact order. Title each section as such with a colon."
+
+    const messages = [{
+        role: 'user',
+        content: userPrompt
+    }]
+    return messages
+}
+
 const parseRecipe = (recipe) => {
   //convert recipe to lowercase
   recipe = recipe.toLowerCase()
   if(recipe.length < 200) {
       // recipe.includes("recipe cannot be generated") || 
-      return {title: "Recipe cannot be generated"}
+      return {title: recipe}
   }
   var title = recipe.split("ingredients:")[0].trim()
-  if(title.includes("prep time")) {
-      title = title.split("prep time")[0].trim()
+  if(title.includes("time:")) {
+      title = title.split("time:")[0].trim()
   }
   if(title.includes("recipe:")) {
       title = title.split("recipe:")[1].trim()
@@ -69,19 +103,19 @@ const parseRecipe = (recipe) => {
   }
 
   var ingredients = recipe.split("ingredients:")[1].split("instructions:")[0].trim()
-  ingredients = "ingredients:\n" + ingredients
+  // ingredients = "ingredients:\n" + ingredients
 
-  var instructions = recipe.split("instructions:")[1].split("prep time:")[0].trim()
+  var instructions = recipe.split("instructions:")[1].split("time:")[0].trim()
   if(instructions.includes("nutritional facts")) {
       instructions = instructions.split("nutritional facts")[0].trim()
   }
-  instructions = "instructions:\n" + instructions
+  // instructions = "instructions:\n" + instructions
 
-  var prepTime = recipe.split("prep time:")[1].split("nutritional facts")[0].trim()
+  var prepTime = recipe.split("time:")[1].split("nutritional facts")[0].trim()
   if(prepTime.includes("ingredients")) {
       prepTime = prepTime.split("ingredients")[0].trim()
   }
-  prepTime = "prep time: " + prepTime
+  // prepTime = "prep time: " + prepTime
 
   // var nutritionalFacts = recipe.split("Nutritional facts")[1].trim()
   var nutritionalFacts = ""
@@ -96,7 +130,7 @@ const parseRecipe = (recipe) => {
       nutritionalFacts = nutritionalFacts.split("recipe cannot be generated")[0].trim()
   }
 
-  nutritionalFacts = "nutritional facts:\n" + nutritionalFacts
+  // nutritionalFacts = "nutritional facts:\n" + nutritionalFacts
 
   return {
       title: title,
