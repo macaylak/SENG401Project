@@ -12,6 +12,8 @@ function Registration() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
+  const [showPassword, setShowPassword] = useState(false); 
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false); 
   const navigate = useNavigate();
 
 
@@ -31,30 +33,60 @@ function Registration() {
     );
   };
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
+
   return (
     <div className='BackDrop'>
   
       <div className='SignUpBody'>
 
         <div className='SignUpthing'>
-        <h2 className='signupheading'>Sign Up</h2>
-        <div className="registration-form">
-  <div className="input-container">
-    <span className="icon">✉</span>
-    <input type="text" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-  </div>
-  <div className="input-container">
-    <span className="icon">🗝</span>
-    <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-  </div>
-  <div className="input-container">
-    <span className="icon">✔</span>
-    <input type="password" placeholder="Confirm Password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
-  </div>
-  <button onClick={handleRegister}>Register</button>
-</div>
-        <a href="/">Back to Home</a>
-      </div>
+          <h2 className='signupheading'>Sign Up</h2>
+          <div className="registration-form">
+            <div className="input-container">
+              <span className="icon">✉</span>
+              <input type="text" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+            </div>
+            <div className="input-container">
+              <span className="icon">🗝</span>
+              <input 
+                type={showPassword ? "text" : "password"} 
+                placeholder="Password" 
+                value={password} 
+                onChange={(e) => setPassword(e.target.value)} 
+              />
+              <span 
+                className="icon show-password-icon" 
+                onClick={togglePasswordVisibility}
+              >
+                {showPassword ? "🙈" : "👁️"}
+              </span>
+            </div>
+            <div className="input-container">
+              <span className="icon">✔</span>
+              <input 
+                type={showConfirmPassword ? "text" : "password"} 
+                placeholder="Confirm Password" 
+                value={confirmPassword} 
+                onChange={(e) => setConfirmPassword(e.target.value)} 
+              />
+              <span 
+                className="icon show-password-icon" 
+                onClick={toggleConfirmPasswordVisibility}
+              >
+                {showConfirmPassword ? "🙈" : "👁️"}
+              </span>
+            </div>
+            <button onClick={handleRegister}>Register</button>
+          </div>
+          <a href="/">Back to Home</a>
+        </div>
 
       </div>
       <footer className='SignUpFooter'>

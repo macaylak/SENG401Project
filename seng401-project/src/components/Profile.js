@@ -32,7 +32,6 @@ const Profile = () => {
       })
       .catch((error) => {
         const errorMessage = error.message;
-        // alert(errorMessage);
         console.log(errorMessage);
       });
     })
@@ -110,12 +109,12 @@ const Profile = () => {
 
   const handlePasswordButtonClick = () => {
     setChangePasswordForm(true);
-    setEmailForm(false); // Hide email form if it's currently displayed
+    setEmailForm(false); 
   };
   
   const handleEmailButtonClick = () => {
     setEmailForm(true);
-    setChangePasswordForm(false); // Hide change password form if it's currently displayed
+    setChangePasswordForm(false); 
   };
 
 
