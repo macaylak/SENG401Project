@@ -34,7 +34,7 @@ exports.generateRecipes = onRequest(async (req, res) => {
     // recipe = "test"
     // console.log(recipe);
 
-    res.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.set('Access-Control-Allow-Origin', '*');
     res.set('Access-Control-Allow-Methods', 'POST');
     res.set('Access-Control-Allow-Headers', 'Content-Type');
 
