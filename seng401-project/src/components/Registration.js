@@ -1,4 +1,3 @@
-// Import necessary modules
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './styles/Registration.css';
@@ -12,12 +11,16 @@ function Registration() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
-  const [showPassword, setShowPassword] = useState(false); 
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false); 
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const navigate = useNavigate();
 
-
   const handleRegister = () => {
+    if (password.length < 6) {
+      alert('Password should be at least 6 characters long.');
+      return;
+    }
+
     RegistrationController.register(
       email, 
       password, 
