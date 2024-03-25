@@ -38,11 +38,16 @@
 }
 
 .flip-card-front {
-  background-image:
-    linear-gradient(
-      45deg, #7cadd3, #d2d3d5
-    );
+  background-image: linear-gradient(45deg, #7cadd3, #d2d3d5);
 }
+
+.flip-card-front img {
+  position: absolute;
+  bottom: 10px; /* Adjust this value as needed */
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 100%; /* Adjust the size of the image */
+  height: auto;}
 
 .flip-card-front h3 {
   color: #130e41;
@@ -161,7 +166,7 @@
 }
 
 .close {
-  color: #ffffff;
+  color: #cd0037;
   float: right;
   font-size: 28px;
   font-weight: bold;
@@ -187,3 +192,4 @@ button {
   padding-bottom: 10px;
   padding-top: 10px;
 }
+

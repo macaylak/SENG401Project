@@ -10,6 +10,7 @@
     gap: 10px;
     height: 80vh;
     overflow-y: scroll;  
+    
 
 }
 
@@ -86,7 +87,7 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    color: #000;
+    color: #ffffff;
     align-content: center;
     justify-content: center;
     transition: background-color 0.3s ease, color 0.3s ease; /* Add transition for smoother hover effect */
@@ -119,12 +120,9 @@
 
   }
 
-  .submitButton:hover{
-    background-color: #fff; /* Change background color on hover */
-    color: #8bc2e4; /* Change text color on hover */
-    border: 2px solid #8bc2e4; /* Add a border */
-  
-  }
+    .submitButton:hover {
+        background-color: #000548 !important;
+    }
 
   .ingredient-list {
     width: 100%;

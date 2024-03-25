@@ -68,6 +68,7 @@ function RecipeCard({ recipe, handleSave, handleDelete, handleRegenerate }) {
         <div className='flip-card-inner'>
           <div className='flip-card-front'>
             <h3>{title}</h3>
+            <img src = "/Line.png"/>
           </div>
           <div className='flip-card-back'>
             <div className='content'>
