@@ -72,27 +72,8 @@ function RecipeCard({ recipe, handleSave, handleDelete, handleRegenerate }) {
           <div className='flip-card-back'>
             <div className='content'>
               <ul>
-                {prepTimeList.map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
-                <li className="ingredients">
-                  <h4>Ingredients:</h4>
-                  <ul>
-                    {ingredientsList.map((ingredient, index) => (
-                      <li key={index}>{ingredient}</li>
-                    ))}
-                  </ul>
-                </li>
-                <li className="instructions">
-                  <h4>Instructions:</h4>
-                  <ol>
-                    {instructions.split('\n').map((step, index) => (
-                      <li key={index}>{step}</li>
-                    ))}
-                  </ol>
-                </li>
                 <li className="nutritional-facts">
-                  <h4>Nutritional Facts:</h4>
+                  <h4>Nutritional Facts</h4>
                   <ul>
                     {nutritionalFacts.split('\n').map((fact, index) => (
                       <li key={index}>{fact}</li>
