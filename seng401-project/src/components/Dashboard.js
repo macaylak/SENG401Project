@@ -26,9 +26,6 @@ function Dashboard() {
     if (auth.currentUser) {
       getRecipes(auth.currentUser);
     }
-    else {
-      navigate('/');
-    }
   }, []);
 
   // useEffect(() => {
@@ -41,6 +38,7 @@ function Dashboard() {
     } else if (count !== 1) {
     } else {
       console.log('user logged out');
+      navigate('/login');
     }
   })
 
