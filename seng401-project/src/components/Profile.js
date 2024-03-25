@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { auth, colRef } from '../firebase';
 import './styles/Profile.css';
 import { updatePassword, updateEmail, reauthenticateWithCredential, EmailAuthProvider, signOut } from "firebase/auth";
@@ -13,6 +13,11 @@ const Profile = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (!auth.currentUser) {
+      navigate('/login');
+    }
+  }, []);
 
   const handlePasswordChange = (e) => {
     e.preventDefault();

@@ -38,6 +38,7 @@ function Dashboard() {
     } else if (count !== 1) {
     } else {
       console.log('user logged out');
+      navigate('/login');
     }
   })
 
