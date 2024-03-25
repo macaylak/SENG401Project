@@ -109,6 +109,13 @@
   overflow: scroll;
 }
 
+/* Hide the scrollbar */
+.modal-content::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+
 .modal-content ul {
   list-style-type: none;
   padding: 0;
@@ -118,8 +125,9 @@
   display: flex;
   flex-direction: column;
   padding: 10px;
-  border-bottom: 1px solid #aaa;
   text-wrap: wrap;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
 }
 
 .modal-content h2 {
@@ -136,7 +144,7 @@
 
 .modal button {
   background: none;
-  color: #888;
+  color: #ffffff;
   border: none;
   padding: 10px 20px;
   font-size: 1rem;
@@ -153,7 +161,7 @@
 }
 
 .close {
-  color: #aaa;
+  color: #ffffff;
   float: right;
   font-size: 28px;
   font-weight: bold;
@@ -169,4 +177,13 @@
 
 button {
   cursor: pointer;
+}
+
+
+.ingredientsH, .instructionsH, .nutritional-facts2H, .timeH {
+  text-align: left;
+  border-bottom: 1px solid #130e41;
+  border-top: 1px solid #130e41;
+  padding-bottom: 10px;
+  padding-top: 10px;
 }

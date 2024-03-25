@@ -49,7 +49,7 @@ function RecipeCard({ recipe, handleSave, handleDelete, handleRegenerate }) {
     const savedRecipes = JSON.parse(localStorage.getItem('savedRecipes')) || [];
     const updatedRecipes = savedRecipes.filter(savedRecipe => savedRecipe.title !== title);
     localStorage.setItem('savedRecipes', JSON.stringify(updatedRecipes));
-    setIsSaved(false);
+    //setIsSaved(false);
 
   
   };
@@ -91,11 +91,12 @@ function RecipeCard({ recipe, handleSave, handleDelete, handleRegenerate }) {
             <span className="close" onClick={toggleModal}>&times;</span>
             <h2>{title}</h2>
             <ul>
+            <h4  className="timeH">Time</h4>
               {prepTimeList.map((item, index) => (
                 <li key={index}>{item}</li>
               ))}
               <li className="ingredients">
-                <h4>Ingredients:</h4>
+                <h4  className="ingredientsH">Ingredients</h4>
                 <ul>
                   {ingredientsList.map((ingredient, index) => (
                     <li key={index}>{ingredient}</li>
@@ -103,15 +104,15 @@ function RecipeCard({ recipe, handleSave, handleDelete, handleRegenerate }) {
                 </ul>
               </li>
               <li className="instructions">
-                <h4>Instructions:</h4>
+                <h4 className="instructionsH">Instructions</h4>
                 <ol>
                   {instructions.split('\n').map((step, index) => (
                     <li key={index}>{step}</li>
                   ))}
                 </ol>
               </li>
-              <li className="nutritional-facts">
-                <h4>Nutritional Facts:</h4>
+              <li className="nutritional-facts2">
+                <h4 className="nutritional-facts2H" >Nutritional Facts</h4>
                 <ul>
                   {nutritionalFacts.split('\n').map((fact, index) => (
                     <li key={index}>{fact}</li>
