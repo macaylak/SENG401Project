@@ -85,21 +85,26 @@ const parseRecipe = (recipe) => {
   //convert recipe to lowercase
   recipe = recipe.toLowerCase()
   if(recipe.length < 200) {
-      // recipe.includes("recipe cannot be generated") || 
-      return {title: recipe}
+    return {title: recipe}
   }
   var title = recipe.split("ingredients:")[0].trim()
   if(title.includes("time:")) {
-      title = title.split("time:")[0].trim()
+    title = title.split("time:")[0].trim()
   }
   if(title.includes("recipe:")) {
-      title = title.split("recipe:")[1].trim()
+    title = title.split("recipe:")[1].trim()
   }
   if(title.includes("title:")) {
-      title = title.split("title:")[1].trim()
+    title = title.split("title:")[1].trim()
   }
   if(title.includes("recipe name:")) {
-      title = title.split("recipe name:")[1].trim()
+    title = title.split("recipe name:")[1].trim()
+  }
+  if(title.includes(":")) {
+    title = title.split(":")[0].trim()
+  }
+  if(title.endsWith("recipe")) {
+    title = title.split("recipe")[0].trim()
   }
 
   var ingredients = recipe.split("ingredients:")[1].split("instructions:")[0].trim()
