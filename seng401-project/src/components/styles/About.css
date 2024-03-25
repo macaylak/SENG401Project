@@ -167,3 +167,14 @@ h4 {
       margin-bottom: 10;
     }
    
+
+
+@media only screen and (max-width: 600px) {
+  .Boxes{
+    display: block;
+  }
+
+  .writing {
+    max-width: 90%;
+  }
+}
