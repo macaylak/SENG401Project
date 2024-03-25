@@ -26,6 +26,9 @@ function Dashboard() {
     if (auth.currentUser) {
       getRecipes(auth.currentUser);
     }
+    else {
+      navigate('/');
+    }
   }, []);
 
   // useEffect(() => {
