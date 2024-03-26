@@ -147,13 +147,22 @@
   position: relative;
 }
 
-.close {
+.close-form{
   position: absolute;
   top: 20px;
   right: 20px;
-  font-size: 24px;
-  color: #fff;
+  font-size: 28px;
+  font-weight: bold;
+  color: #cd0037;
   cursor: pointer;
 
+}
+
+
+.close-form:hover,
+.close-form:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
 

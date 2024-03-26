@@ -248,7 +248,7 @@ function Dashboard() {
       {showModal && (
           <div className="modal-overlay">
             <div className="modal-form">
-              <span className="close" onClick={toggleModal}>&times;</span>
+              <span className="close-form" onClick={toggleModal}>&times;</span>
               {/* New Recipe Form */}
               <RecipeForm handleSubmit={handleSubmitNewRecipe} />
             </div>

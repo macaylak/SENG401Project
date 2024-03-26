@@ -40,7 +40,6 @@ function Login() {
               <input type="text" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
             </div>
             <div className="input-container">
-              <span className="icon">🗝</span>
               <input 
                 type={showPassword ? "text" : "password"} 
                 placeholder="Password" 
