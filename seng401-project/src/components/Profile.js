@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { auth, colRef } from '../firebase';
 import './styles/Profile.css';
-import { updatePassword, updateEmail, reauthenticateWithCredential, EmailAuthProvider, signOut } from "firebase/auth";
+import { updatePassword, updateEmail, reauthenticateWithCredential, EmailAuthProvider, signOut, onAuthStateChanged } from "firebase/auth";
 import ProfileController from './controllers/ProfileController';
 import { useNavigate } from 'react-router-dom';
 import { getDocs, query, where, updateDoc } from 'firebase/firestore';
@@ -12,12 +12,6 @@ const Profile = () => {
   const [changePasswordForm, setChangePasswordForm] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!auth.currentUser) {
-      navigate('/login');
-    }
-  }, []);
 
   const handlePasswordChange = (e) => {
     e.preventDefault();
@@ -127,6 +121,13 @@ const Profile = () => {
     window.location.href = '/dashboard';
   }
 
+  onAuthStateChanged(auth, (user) => {
+    if (!user) {
+      console.log('user logged out');
+      navigate('/login');
+    }
+  })
+
   return (
 
     
@@ -168,7 +169,7 @@ const Profile = () => {
               <input type="email" placeholder='Re-enter New Email' name="email" />
             </label>
             <label>
-              <input type="password" placeholder = 'Enter password to confirm changes' name="password" />
+              <input type="password" placeholder = 'Enter password to confirm' name="password" />
             </label>
             <input type="submit" value="Save" />
           </form>
