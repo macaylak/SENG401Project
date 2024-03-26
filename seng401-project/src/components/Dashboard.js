@@ -223,6 +223,11 @@ function Dashboard() {
     // save things like cuisine, diet, allergy, then regenerate
   }
 
+  const checkSaved = (recipe) => {
+    const querySnapshot = getDocs(query(colRef, where("title", "==", recipe.title), where("user", "==", auth.currentUser.email)));
+    return !querySnapshot.empty;
+  }
+
   return (
     <div>
       <div className='HeaderItems'>
@@ -242,7 +247,7 @@ function Dashboard() {
       <main>
       <div className="content">
         {/* Render content based on user selection */}
-        {content === 'recipes' && <Recipes recipes={recipes} handleSave={handleSave} handleDelete={handleDelete} searching={searching} searchedRecipes={searchedRecipes} handleRegenerate={handleRegenerate}  />}
+        {content === 'recipes' && <Recipes recipes={recipes} handleSave={handleSave} handleDelete={handleDelete} searching={searching} searchedRecipes={searchedRecipes} handleRegenerate={handleRegenerate} checkSaved={checkSaved} />}
       </div>
       </main>
       {showModal && (

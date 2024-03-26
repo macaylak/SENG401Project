@@ -7,18 +7,11 @@ import { FaList } from 'react-icons/fa';
 import { FaTh } from 'react-icons/fa';
 
 
-const Recipes = ({ recipes, handleSave, handleDelete, recipesPerRow, searching, searchedRecipes, handleRegenerate }) => {
+const Recipes = ({ recipes, handleSave, handleDelete, recipesPerRow, searching, searchedRecipes, handleRegenerate, checkSaved }) => {
 
   const [searchQuery] = useState('');
   const [isGridView, setIsGridView] = useState(true);
   // const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
-
-  // console.log(isMobile);
-  useEffect(() => {
-    if (window.innerWidth <= 600) {
-      setIsGridView(false);
-    }
-  })
 
   const toggleView = () => {
     setIsGridView(prevState => !prevState);
@@ -44,6 +37,7 @@ const Recipes = ({ recipes, handleSave, handleDelete, recipesPerRow, searching, 
 
             handleDelete={() => handleDelete(recipe)}
             handleRegenerate={() => handleRegenerate(recipe)}
+            checkSaved={checkSaved}
 
           />
         ))}
