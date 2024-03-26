@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { FaCheck, FaTrash, FaRedo } from 'react-icons/fa';
 import './styles/RecipeCard.css';
+import { getDocs, query, where } from 'firebase/firestore';
+import { auth, colRef } from '../firebase';
 
-function RecipeCard({ recipe, handleSave, handleDelete, handleRegenerate, checkSaved }) {
+function RecipeCard({ recipe, handleSave, handleDelete, handleRegenerate }) {
   const { title, ingredients, instructions, prepTime, nutritionalFacts } = recipe;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSaveLoading, setIsSaveLoading] = useState(false);
@@ -26,9 +28,15 @@ function RecipeCard({ recipe, handleSave, handleDelete, handleRegenerate, checkS
 
   useEffect(() => {
     // Check if the recipe is already saved when the component mounts
-    const savedRecipes = JSON.parse(localStorage.getItem('savedRecipes')) || [];
-    const isRecipeSaved = savedRecipes.some(savedRecipe => savedRecipe.title === title);
-    setIsSaved(checkSaved(recipe) || isRecipeSaved);
+    // const savedRecipes = JSON.parse(localStorage.getItem('savedRecipes')) || [];
+    // const isRecipeSaved = savedRecipes.some(savedRecipe => savedRecipe.title === title);
+    getDocs(query(colRef, where("title", "==", title), where("user", "==", auth.currentUser.email)))
+    .then((querySnapshot) => {
+      setIsSaved(!querySnapshot.empty);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
   }, [title]);
 
   const toggleModal = () => {

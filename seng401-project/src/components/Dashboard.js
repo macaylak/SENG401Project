@@ -28,10 +28,6 @@ function Dashboard() {
     }
   }, []);
 
-  // useEffect(() => {
-  //   console.log(auth.currentUser)
-  // }, [auth.currentUser]);
-
   onAuthStateChanged(auth, (user) => {
     if (user && count === 1) {
       getRecipes(user);
@@ -85,7 +81,6 @@ function Dashboard() {
   // Function to handle submitting a new recipe
   const handleSubmitNewRecipe = async (input, regenerate=false, oldRecipe=null) => {
     if (!input.ingredients.trim()) return;
-    console.log("input", input);
 
     try {
       const response = await axios.post(
@@ -126,7 +121,6 @@ function Dashboard() {
                 return recipe;
               });
             });
-            console.log("recipes", recipes) 
           }
         } else {
           alert(recipeDict.title);
@@ -169,9 +163,7 @@ function Dashboard() {
     var id = '';
     getDocs(query(colRef, where("title", "==", recipe.title)))
     .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        console.log(doc.id);
-        console.log(doc.data());  
+      querySnapshot.forEach((doc) => { 
         id = doc.id;
       });
 
@@ -183,7 +175,6 @@ function Dashboard() {
     .catch((err) => {
       console.log(err.message);
     });
-    console.log("id", id);
   }
 
   const handleSearch = (e) => {
@@ -209,7 +200,6 @@ function Dashboard() {
 
   const handleRegenerate = async (recipe) => {
     setRegenRecipe(true);
-    console.log("hello", recipe)
     var input = {ingredients: recipe.ingredientsAvailable}
     input.cuisine = recipe.cuisine? recipe.cuisine : '';
     input.diet = recipe.diet? recipe.diet : '';
@@ -217,15 +207,6 @@ function Dashboard() {
 
     await handleSubmitNewRecipe(input, true, recipe);
     setRegenRecipe(false);
-    console.log("recipes", recipes)
-
-    // handleDelete(recipe);
-    // save things like cuisine, diet, allergy, then regenerate
-  }
-
-  const checkSaved = (recipe) => {
-    const querySnapshot = getDocs(query(colRef, where("title", "==", recipe.title), where("user", "==", auth.currentUser.email)));
-    return !querySnapshot.empty;
   }
 
   return (
@@ -247,7 +228,7 @@ function Dashboard() {
       <main>
       <div className="content">
         {/* Render content based on user selection */}
-        {content === 'recipes' && <Recipes recipes={recipes} handleSave={handleSave} handleDelete={handleDelete} searching={searching} searchedRecipes={searchedRecipes} handleRegenerate={handleRegenerate} checkSaved={checkSaved} />}
+        {content === 'recipes' && <Recipes recipes={recipes} handleSave={handleSave} handleDelete={handleDelete} searching={searching} searchedRecipes={searchedRecipes} handleRegenerate={handleRegenerate} />}
       </div>
       </main>
       {showModal && (
