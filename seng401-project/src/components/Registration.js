@@ -57,7 +57,6 @@ function Registration() {
               <input type="text" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
             </div>
             <div className="input-container">
-              <span className="icon">🗝</span>
               <input 
                 type={showPassword ? "text" : "password"} 
                 placeholder="Password" 
@@ -72,7 +71,6 @@ function Registration() {
               </span>
             </div>
             <div className="input-container">
-              <span className="icon">✔</span>
               <input 
                 type={showConfirmPassword ? "text" : "password"} 
                 placeholder="Confirm Password" 
