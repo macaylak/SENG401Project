@@ -42,7 +42,7 @@ const addRecipe = (recipe) => {
 }
 
 
-// Query: Delete a recipe from Firestore collection
+// Command: Delete a recipe from Firestore collection
 const deleteRecipe = (id) => {
   deleteDoc(doc(colRef, id))
   .catch((err) => {
