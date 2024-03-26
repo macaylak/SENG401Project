@@ -106,11 +106,11 @@ function RecipeCard({ recipe, handleSave, handleDelete, handleRegenerate }) {
               </li>
               <li className="instructions">
                 <h4 className="instructionsH">Instructions</h4>
-                <ol>
+                <ul>
                   {instructions.split('\n').map((step, index) => (
                     <li key={index}>{step}</li>
                   ))}
-                </ol>
+                </ul>
               </li>
               <li className="nutritional-facts2">
                 <h4 className="nutritional-facts2H" >Nutritional Facts</h4>

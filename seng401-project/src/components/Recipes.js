@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import RecipeCard from './RecipeCard';
 import './styles/Recipes.css'; // Import the CSS file
 // import list icon
@@ -11,6 +11,14 @@ const Recipes = ({ recipes, handleSave, handleDelete, recipesPerRow, searching, 
 
   const [searchQuery] = useState('');
   const [isGridView, setIsGridView] = useState(true);
+  // const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
+
+  // console.log(isMobile);
+  useEffect(() => {
+    if (window.innerWidth <= 600) {
+      setIsGridView(false);
+    }
+  })
 
   const toggleView = () => {
     setIsGridView(prevState => !prevState);
