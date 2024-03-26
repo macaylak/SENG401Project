@@ -1,57 +1,102 @@
-/* 
-<div>
-    <h2>Login</h2>
-    <input type="text" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-    <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-    <button onClick={handleLogin}>Login</button>
-</div> 
-*/
 
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: rgb(215, 227, 215);
+
+.BackDropLogin {
+    margin-top:0%;
+    background-image: url('./Flower1.png'); /* Set the background image */
+    background-repeat: repeat; /* Repeat the image */
+    height: 100vh; /* Set the height of the background to cover the whole viewport */
+  }
+
+  .LoginBody{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+  
   }
   
-  h2 {
+  .LoginHeading {
     text-align: center;
-    margin-top: 50px;
-    color: hsl(134, 93%, 5%);
+    margin-top: 20px;
+    margin-bottom: 35px;
+    color: #130e41;
   }
 
 .login-form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 20px;
-}
-
-.login-form input {
+    
+  }
+  
+  .login-form input {
     margin-bottom: 10px;
     padding: 10px;
     width: 300px;
     border: 1px solid #ccc;
     border-radius: 5px;
+  }
+  
+  
+  .LoginButton {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px; /* Increase padding for a larger button */
+    background-color: #8bc2e4; /* Change background color */
+    border: 2px solid #fff; /* Add a border */
+    border-radius: 25px;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Add transition for smoother hover effect */
+    /* Specify the font family */
+    font-size: 13px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: 0 auto; /* Center the button horizontally */
 }
+  
+.LoginButton:hover{
+    background-color: #fff; /* Change background color on hover */
+    color: #8bc2e4; /* Change text color on hover */
+    border: 2px solid #8bc2e4; /* Add a border */
+  
+  }
+  
+  
+  .LF{
+    text-align: center;
+    background-color: #120f2d;
+    color: #fff;
+    text-align: center;
+    font-family: "Ariel", sans-serif;
+  }
+  
+  
+  .LoginFooter {
+  
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #0e0b28;
+    color: #fff;
+    text-align: center;
+  
+  
+  }
 
-.login-form button {
-    padding: 10px 20px;
-    border-radius: 5px;
-    background-color: #a8c697;
-    border-color: #555;
-    color: hsl(134, 93%, 5%);
-    cursor: pointer;
-}
+  
 
-.login-form button:hover {
-    background-color: #8cb285;
-}
+    
+    
 
+
+  
 /* back to home button */
 a {
     display: block;
     text-align: center;
     margin-top: 20px;
-    color: #666;
+    color: #424040;
+    text-decoration: none;
+    font-family: "Ariel", sans-serif;
 }

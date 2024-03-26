@@ -1,0 +1,125 @@
+/* styles/Profile.css */
+
+
+.profile-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.PH {
+    color: #130e41;
+    margin-top: 45px;
+    margin-bottom: 0px;
+}
+
+.sidebar {
+    width: 230px;
+    height: 100vh;
+    background-color: #061c34;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center items vertically */
+    align-items: center; /* Center items horizontally */
+    text-align: right;
+}
+
+.sidebar button {
+    color: #fff;
+    background-color: #061c34;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 15px;
+    font-family: Oswald, sans-serif;
+    border: none;
+    height: 60px;
+    width: 100%;
+}
+
+.sidebar button:hover {
+    background-color: #4b729b;
+    color: #fff;
+}
+
+
+.centered-form {
+    max-width: 450px;
+    margin-top:7%;
+    border-radius: 35px; /* Rounded border */
+    border: 1px solid #ccc; /* Add border */
+    padding: 20px; /* Add some padding */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.centered-form label {
+    display: block;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.centered-form input[type="password"],
+.centered-form input[type="email"] {
+    width: 300px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px; /* Rounded input fields */
+    border: 1px solid #ccc; /* Add border */
+}
+
+
+
+
+
+.centered-form input[type="submit"] {
+    color: #fff;
+    text-decoration: none;
+    background-color: #8bc2e4; /* Change background color */
+    border: 2px solid #fff; /* Add a border */
+    border-radius: 25px;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Add transition for smoother hover effect */
+    /* Specify the font family */
+    font-size: 15px;
+    width: 40%;
+    padding: 10px 20px; /* Increase padding for a larger button */
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+   
+}
+
+
+.centered-form input[type="submit"]:hover {
+    background-color: #fff; /* Change background color on hover */
+    color: #8bc2e4; /* Change text color on hover */
+    border: 2px solid #8bc2e4; /* Add a border */
+  
+}
+
+
+
+
+@media only screen and (max-width: 600px) {
+    .main-content {
+        width: 70%;
+    }
+    .sidebar {
+        width: 40%;
+    }
+    .centered-form {
+        width: 80%;
+    }
+    .centered-form input[type="password"],
+    .centered-form input[type="email"] {
+        width: 175px;
+    }
+
+    .centered-form input[type="submit"] {
+        width: 80%;
+    }
+    
+}

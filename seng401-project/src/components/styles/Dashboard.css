@@ -1,96 +1,198 @@
-/* 
-<div>
-<h2>Dashboard</h2>
-<div className="sidemenu">
-  <ul>
-    <li>Profile</li>
-    <li>Recipes</li>
-    <li>Meal Plan</li>
-    <li>Settings</li>
-  </ul>
-</div>
-<div className="main-content">
-</div>
-<button>New Recipe</button>
-<div className="recipe-display">
-</div>
-<style>{`
-  .about-container {
-    display: none;
-  }
-`}</style>
-</div> 
-*/
+@import url('https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,100..900;1,100..900&display=swap');
 
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f4f4;
+.HeaderItems {
+  background-image: url("./Logo2.png");
+  background-repeat: no-repeat;
+  background-position: 92% 17%; /* Position the image on the right side */
 }
 
-h2 {
-  margin-top: 0;
-  padding-top: 20px;
-  color: #4d4d4d;
-}
-
-.sidemenu {
-  float: left;
-  width: 20%;
-  height: 100%;
-  background-color: #f4f4f4;
-  padding: 20px;
-  border-right: 1px solid #d9d9d9;
-}
-
-.sidemenu ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.sidemenu ul li {
-  padding: 10px;
-  margin: 10px;
-  background-color: #d9d9d9;
-  border-radius: 5px;
-  text-align: center;
-  cursor: pointer;
-}
-
-.sidemenu ul li:hover {
-  background-color: #b3b3b3;
-}
-
-.main-content {
-  float: left;
-  width: 80%;
-  height: 100%;
-  padding: 20px;
-}
-
-.recipe-display {
+.menu {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-around; /* Aligns items to both ends of the container */
+  align-items: center;
+  flex-direction: row;
 }
 
-button {
-  margin: 20px;
-  padding: 10px;
-  background-color: #4d4d4d;
-  color: white;
+.menu ul button {
   border: none;
-  border-radius: 5px;
+  background: none;
   cursor: pointer;
+  color: #050f34;
+  text-decoration: none;
+  position: relative;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  letter-spacing: 0.5px;
+  border:none;
+  background: none;
+  font-size: medium;
 }
 
-button:hover {
-  background-color: #333;
+.menu ul button:hover {
+  color: #6297bf; /* Change color on hover */
 }
+
+.menu ul button:hover::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px; /* Adjust the distance of the underline */
+  width: 100%;
+  height: 1px;
+  background-color: #6297bf; /* Underline color on hover */
+}
+
+
+
+.webtitle, .slogan{
+  padding-left: 30px;
+
+}
+
+.webtitle{
+  padding-top: 30px;
+  color: #130e41;
+  font-family: Oswald, sans-serif;
+  font-size: 40px;
+  letter-spacing: 4px;
+}
+
+.slogan{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color:#505862;
+  letter-spacing: 1.5px;
+  font-size: medium;
+}
+
+.HeaderItems {
+  border-bottom: 2px solid #050f34; /* Adding border below the row */
+  padding-bottom: 10px;
+}
+
+.menu {
+  display: flex;
+  justify-content: space-between; /* Aligns items to both ends of the container */
+  align-items: center;
+}
+
+.menu ul {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  padding-left: 30px;
+}
+
+
+.menu ul button,
+.menu ul li {
+  margin-right: 42px; /* Adjust the margin as needed */
+}
+
+
+.search-container {
+  display: flex;
+  align-items: center;
+  margin-right: 30px ;
+}
+
+.search-bar {
+  border-radius: 20px;
+  padding: 5px 40px 5px 40px;
+  border: 2px solid  #a3a3a3;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="%23888" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 0 0 1.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 0 0-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 0 0 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+  background-size: 24px;
+  background-repeat: no-repeat;
+  background-position: 95%, center;
+  width: 300px;
+}
+
+.search-bar::placeholder {
+  color: #dfdada;
+  text-align: start;
+  
+}
+
 
 .about-container {
   display: none;
 }
 
-/* hide login and register button */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-form {
+  position: relative;
+}
+
+.close-form{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #cd0037;
+  cursor: pointer;
+
+}
+
+.close-form:hover,
+.close-form:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 700px) {
+  .search-container {
+    justify-content: center;
+    margin-right: 0px ;
+  }
+  .menu {
+    display: block;
+  }
+  .HeaderItems {
+    background-position: 80% 45%;
+    background-size: auto 35%;
+  }
+  .slogan{
+    padding-left: 20%;
+    text-align: left;
+  }
+
+  .webtitle{
+    padding-left: 0;
+    text-align: center;
+    padding-top: 10px;
+  }
+  body .HeaderItems {
+    text-align: center;
+  }
+
+  .menu ul {
+    display: block;
+    padding-left: 0px;
+  }
+}
