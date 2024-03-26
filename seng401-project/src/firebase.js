@@ -31,6 +31,9 @@ const auth = getAuth(app);
 const db = getFirestore();
 const colRef = collection(db, 'recipes');
 
+
+
+//Command
 const addRecipe = (recipe) => {
   addDoc(colRef, recipe)
   .catch((err) => {
@@ -38,6 +41,8 @@ const addRecipe = (recipe) => {
   })
 }
 
+
+//Query
 const deleteRecipe = (id) => {
   deleteDoc(doc(colRef, id))
   .catch((err) => {
