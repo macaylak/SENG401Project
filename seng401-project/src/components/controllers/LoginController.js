@@ -1,8 +1,8 @@
 import LoginModel from '../models/LoginModel';
 
 const LoginController = {
-  
-  //Query
+
+  //Query: Verify and Login User
   async login(email, password, onSuccess, onFailure) {
     try {
       await LoginModel.signIn(email, password);

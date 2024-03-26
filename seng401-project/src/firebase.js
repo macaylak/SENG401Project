@@ -33,7 +33,7 @@ const colRef = collection(db, 'recipes');
 
 
 
-//Command
+// Command: Add a recipe to Firestore collection
 const addRecipe = (recipe) => {
   addDoc(colRef, recipe)
   .catch((err) => {
@@ -42,7 +42,7 @@ const addRecipe = (recipe) => {
 }
 
 
-//Query
+// Query: Delete a recipe from Firestore collection
 const deleteRecipe = (id) => {
   deleteDoc(doc(colRef, id))
   .catch((err) => {

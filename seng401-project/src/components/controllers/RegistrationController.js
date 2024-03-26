@@ -2,7 +2,7 @@ import RegistrationModel from '../models/RegistrationModel';
 
 const RegistrationController = {
 
-  //Command
+  //Command: Register New User
   async register(email, password, confirmPassword, onSuccess, onFailure) {
     if (password !== confirmPassword) {
       onFailure('Passwords do not match.');
