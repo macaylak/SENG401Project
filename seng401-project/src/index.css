@@ -119,3 +119,10 @@ h1 {
   background-color: #fff; /* Change background color on hover */
   color: #8bc2e4; /* Change text color on hover */
 }
+
+@media screen and (max-width: 768px) {
+  .logo{
+    width: 90%;
+  }
+  
+}
