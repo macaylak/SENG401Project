@@ -17,9 +17,9 @@ class DashboardModel {
     const fetchedRecipes = [];
 
     const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
+    querySnapshot.docs.forEach((doc) => { 
       let recipe = doc.data();
-      recipe.id = doc.id;
+      recipe.id = doc.id; // Ensure the recipe object has the document ID
       fetchedRecipes.push(recipe);
     });
 
@@ -46,24 +46,26 @@ class DashboardModel {
   }
   async addNewRecipe(recipeData) {
     try {
-      const response = await addRecipe(recipeData); // Assume addRecipe returns a promise
-      this.recipes.unshift(response); // Add to the beginning of the array
-      return response;
+      const newDocRef = await addDoc(colRef, { ...recipeData, user: auth.currentUser.email });
+      const newRecipe = { id: newDocRef.id, ...recipeData };
+      this.recipes.unshift(newRecipe); // Simulate adding the new recipe to the start of the recipes array
+      return newRecipe; // Return the new recipe with its Firestore document ID
     } catch (error) {
       console.error("Error adding recipe:", error);
       throw error;
     }
   }
-
+  
   async deleteRecipeById(recipeId) {
     try {
-      await deleteRecipe(recipeId); // Assume deleteRecipe is a function that deletes a recipe by ID
-      this.recipes = this.recipes.filter(recipe => recipe.id !== recipeId);
+      await deleteDoc(doc(colRef, recipeId));
+      this.recipes = this.recipes.filter(recipe => recipe.id !== recipeId); // Update the recipes list to remove the deleted recipe
     } catch (error) {
       console.error("Error deleting recipe:", error);
       throw error;
     }
   }
+  
 
   async saveRecipe(recipe) {
     const q = query(colRef, where("title", "==", recipe.title));
