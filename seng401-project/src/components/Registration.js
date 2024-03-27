@@ -3,9 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import './styles/Registration.css';
 import RegistrationController from './controllers/RegistrationController';
 
-import { auth } from '../firebase';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-
 function Registration() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
