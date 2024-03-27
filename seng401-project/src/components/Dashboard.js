@@ -8,6 +8,8 @@ import './styles/Dashboard.css';
 import { FaTimes, FaPlus } from 'react-icons/fa';
 import Recipes from './Recipes';
 import RecipeForm from './RecipeForm';
+import DashboardController from './controllers/DashboardController';
+import DashboardModel from './models/DashboardModel';
 
 function Dashboard() {
   const [input, setInput] = useState('');
@@ -22,7 +24,7 @@ function Dashboard() {
   var count = 0;
 
   useEffect(() => {
-    count = 1;
+    count = 1;    
     if (auth.currentUser) {
       getRecipes(auth.currentUser);
     }
