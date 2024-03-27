@@ -16,8 +16,20 @@ function Registration() {
   const navigate = useNavigate();
 
   const handleRegister = () => {
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+
     if (password.length < 6) {
       alert('Password should be at least 6 characters long.');
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      alert('Passwords do not match.');
       return;
     }
 
