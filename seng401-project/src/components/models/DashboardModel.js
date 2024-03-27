@@ -1,6 +1,11 @@
-import { colRef, auth, addRecipe, deleteRecipe } from '../../firebase';;
-import { query, where, getDocs, addDoc, deleteDoc, doc } from 'firebase/firestore';
 
+import React, { useState, useEffect } from 'react';
+import axios from 'axios'; // Import Axios or use fetch API
+import { addRecipe, auth, colRef, deleteRecipe } from '../../firebase';
+import { signOut, onAuthStateChanged } from "firebase/auth";
+import { useNavigate } from 'react-router-dom';
+import { query, where, getDocs, addDoc, deleteDoc, doc } from 'firebase/firestore';
+import { FaTimes, FaPlus } from 'react-icons/fa';
 
 class DashboardModel {
   constructor() {
