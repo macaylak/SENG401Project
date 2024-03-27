@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'; // Import Axios or use fetch API
 import { addRecipe, auth, colRef, deleteRecipe } from '../../firebase';

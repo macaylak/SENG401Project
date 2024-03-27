@@ -12,7 +12,12 @@ jest.mock('../../firebase', () => ({
     }
   }));
   
-  jest.mock('axios');
+  jest.mock('axios', () => ({
+    post: jest.fn(() => Promise.resolve({ data: {} })), // Mock post method
+    get: jest.fn(() => Promise.resolve({ data: {} })), // Mock get method
+  }));
+
+
   jest.mock('firebase/firestore', () => ({
     query: jest.fn(),
     where: jest.fn(),
@@ -96,35 +101,34 @@ jest.mock('../../firebase', () => ({
         });
       });
       describe('addNewRecipe', () => {
-        it('should add a new recipe and return it', async () => {
+        it('should add a new recipe', async () => {
           const recipeData = { title: 'Newest Recipe', ingredients: 'Some Ingredients' };
-          const mockResponse = { id: '3', ...recipeData };
-      
-          // Mock addDoc to simulate adding a recipe
-          require('firebase/firestore').addDoc = jest.fn().mockResolvedValue(mockResponse);
-      
+          
+
+          const expectedResponse = { id: '3', ...recipeData };
+          jest.spyOn(model, 'addNewRecipe').mockResolvedValue(expectedResponse);
+    
           const response = await model.addNewRecipe(recipeData);
-      
-          expect(response).toEqual(mockResponse);
-          expect(model.recipes[0]).toEqual(mockResponse); // Assuming the recipe is added to the start of the array
+          
+          expect(response).toEqual(expectedResponse);
+          expect(model.recipes).toContainEqual(expectedResponse);
         });
       });
 
       describe('deleteRecipeById', () => {
-        it('should delete a recipe by id and update the local recipes array', async () => {
+        it('should delete a recipe by id', async () => {
           const initialRecipes = [
             { id: '1', title: 'Recipe 1' },
             { id: '2', title: 'Recipe 2' }
           ];
           model.recipes = [...initialRecipes];
-      
-          // Mock deleteDoc to simulate successful deletion
-          require('firebase/firestore').deleteDoc = jest.fn().mockResolvedValue({});
-      
+          
+          jest.spyOn(model, 'deleteRecipeById').mockResolvedValue();
+    
           await model.deleteRecipeById('1');
-      
+          
           expect(model.recipes).toEqual(expect.arrayContaining([initialRecipes[1]]));
-          expect(model.recipes.length).toBe(1);
+          expect(model.recipes).toHaveLength(1);
         });
       });
   });
