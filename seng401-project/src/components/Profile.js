@@ -1,110 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { auth, colRef } from '../firebase';
+import React, { useState } from 'react';
+import { auth } from '../firebase';
 import './styles/Profile.css';
-import { updatePassword, updateEmail, reauthenticateWithCredential, EmailAuthProvider, signOut, onAuthStateChanged } from "firebase/auth";
-import ProfileController from './controllers/ProfileController';
+import { onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
-import { getDocs, query, where, updateDoc } from 'firebase/firestore';
+import { handlePasswordChange, handleEmailChange } from './controllers/ProfileController';
 
 const Profile = () => {
-  const [password, setPassword] = useState('');
   const [emailForm, setEmailForm] = useState(false);
   const [changePasswordForm, setChangePasswordForm] = useState(false);
-  const [error, setError] = useState('');
   const navigate = useNavigate();
-
-  const handlePasswordChange = (e) => {
-    e.preventDefault();
-    const credential = EmailAuthProvider.credential(
-      auth.currentUser.email,
-      e.target.password[0].value
-     );
-    reauthenticateWithCredential(auth.currentUser, credential)
-    .then(() => {
-      if (e.target.password[1].value !== e.target.password[2].value) {
-        alert('New passwords do not match');
-        return;
-      }
-      updatePassword(auth.currentUser, e.target.password[1].value).then(() => {
-        alert('Password updated!');
-        logOut();
-      })
-      .catch((error) => {
-        const errorMessage = error.message;
-        console.log(errorMessage);
-      });
-    })
-    .catch((error) => {
-      const errorMessage = error.message;
-      alert(errorMessage);
-    });
-  };
-
-  const handleEmailChange = (e) => {
-    e.preventDefault();
-    if (e.target.email[0].value !== auth.currentUser.email) {
-      alert('Current email is incorrect');
-      return;
-    }
-    if (e.target.email[1].value !== e.target.email[2].value) {
-      alert('New emails do not match');
-      return;
-    }
-    updateEmail(auth.currentUser, e.target.email[1].value).then(() => {
-      alert('Email updated!');
-      changeRecipeUser(e.target.email[0].value, e.target.email[1].value);
-      logOut();
-    })
-    .catch((error) => {
-      const errorMessage = error.message;
-
-      if (errorMessage.includes('auth/requires-recent-login')) {
-        const credential = EmailAuthProvider.credential(
-          auth.currentUser.email,
-          e.target.password.value
-        );
-
-        reauthenticateWithCredential(auth.currentUser, credential)
-        .then(() => {
-          updateEmail(auth.currentUser, e.target.email[1].value)
-          .catch((error) => {
-            const errorMessage = error.message;
-            alert(errorMessage);
-          });
-        })
-        .catch((error) => {
-          const errorMessage = error.message;
-          alert(errorMessage);
-        });
-      }
-    });
-  }
-
-  const logOut = () => {
-    signOut(auth)
-      .then(() => {
-        console.log("user signed out");
-        navigate('/login');
-      })
-      .catch((err) => {
-        console.error(err.message);
-      })
-  }
-
-  const changeRecipeUser = (oldEmail, newEmail) => {
-    console.log('Changing user email from ' + oldEmail + ' to ' + newEmail);
-    const q = query(colRef, where("user", "==", oldEmail));
-    getDocs(q)
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          console.log(doc.data().title);
-          updateDoc(doc.ref, { user: newEmail });
-        });
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  }
 
   const handlePasswordButtonClick = () => {
     setChangePasswordForm(true);
@@ -116,9 +20,8 @@ const Profile = () => {
     setChangePasswordForm(false); 
   };
 
-
   const handleBackButtonClick = () => {
-    window.location.href = '/dashboard';
+    navigate('/dashboard');
   }
 
   onAuthStateChanged(auth, (user) => {
@@ -129,8 +32,6 @@ const Profile = () => {
   })
 
   return (
-
-    
 <div className="profile-container">
   <div className="sidebar">
   <button onClick={handleEmailButtonClick}>✉  CHANGE EMAIL</button>

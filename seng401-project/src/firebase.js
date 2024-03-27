@@ -1,13 +1,12 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getAuth, updatePassword } from "firebase/auth";
+import { getAuth, signOut } from "firebase/auth";
 import {
-  getFirestore, onSnapshot, collection,
+  getFirestore, collection,
   addDoc, deleteDoc, doc,
   query, where,
-  orderBy, serverTimestamp,
-  getDoc, updateDoc
+  getDocs
 } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -45,8 +44,33 @@ const deleteRecipe = (id) => {
   })
 }
 
+const getRecipes = (user, recipes, setRecipes) => {
+  if (!user) return;
 
+  var fetchedRecipes = [];
+  const q = query(colRef, where("user", "==", user.email));
 
+  getDocs(q)
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        if (!recipes.some((recipe) => recipe.id === doc.id)) {
+          let recipe = doc.data();
+          recipe.id = doc.id;
+          fetchedRecipes.push(recipe);
+        }
+      });
+      setRecipes([...recipes, ...fetchedRecipes]);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+}
 
+const logOut = () => {
+  signOut(auth)
+    .catch((err) => {
+      console.error(err.message);
+    })
+}
 
-export { auth, colRef, addRecipe, deleteRecipe};
+export { auth, colRef, addRecipe, deleteRecipe, getRecipes, logOut};
