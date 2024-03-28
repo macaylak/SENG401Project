@@ -7,6 +7,7 @@
 
 ### Once you have verified that node, npm, and npx are installed, you can run the following commands to run the code.
 ### cd seng401-project
+### TO RUN THE PROJECT USE THE RM1 BRANCH SINCE THAT IS THE MOST UPDATED BRANCH
 ### npm start
 
 
